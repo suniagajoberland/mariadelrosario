@@ -1,0 +1,3554 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión Escolar - Primaria | María del Rosario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Outfit", "sans-serif"],
+            },
+            colors: {
+              school: {
+                50: "#f0fdf4",
+                100: "#dcfce7",
+                500: "#22c55e",
+                600: "#16a34a",
+                700: "#15803d",
+              },
+              brand: {
+                50: "#eff6ff",
+                100: "#dbeafe",
+                500: "#3b82f6",
+                600: "#2563eb",
+                700: "#1d4ed8",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      .font-heading {
+        font-family: "Outfit", sans-serif;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      .fade-in {
+        animation: fadeIn 0.15s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .input {
+        width: 100%;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 0.625rem 0.75rem;
+        color: #334155;
+        outline: none;
+      }
+      .input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+      }
+      .btn-pri {
+        padding: 0.625rem 1.25rem;
+        background: #2563eb;
+        color: #fff;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+      }
+      .btn-pri:hover {
+        background: #1d4ed8;
+      }
+      .btn-sec {
+        padding: 0.625rem 1rem;
+        background: #f1f5f9;
+        color: #334155;
+        border-radius: 0.75rem;
+        font-weight: 600;
+      }
+      .btn-sec:hover {
+        background: #e2e8f0;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #475569;
+        text-align: left;
+      }
+      .nav-item:hover {
+        background: #f1f5f9;
+      }
+      .nav-item.activo {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .nav-item .ico {
+        width: 1.5rem;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      }
+      .th {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: #64748b;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: left;
+      }
+      .td {
+        padding: 0.75rem 1.5rem;
+        vertical-align: middle;
+      }
+      .badge {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 9999px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-700 antialiased selection:bg-brand-100 selection:text-brand-700"
+  >
+    <!-- ================= LOGIN ================= -->
+    <div
+      id="login-screen"
+      class="fixed inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-700 flex items-center justify-center z-[60] p-4 overflow-y-auto"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-white/20 fade-in my-8"
+      >
+        <div class="text-center mb-6">
+          <div
+            class="mx-auto w-14 h-14 rounded-2xl bg-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 mb-4"
+          >
+            <i class="fa-solid fa-school-flag text-2xl"></i>
+          </div>
+          <h1 class="text-xl font-bold font-heading text-slate-800">
+            U.E. Primaria "María del Rosario"
+          </h1>
+          <p class="text-sm text-slate-500 mt-1">Sistema de Gestión Escolar</p>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label
+              class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2"
+              >Tipo de Usuario</label
+            >
+            <select
+              id="login-rol"
+              onchange="cambiarRolLogin()"
+              class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+            >
+              <option value="admin">Administrador</option>
+              <option value="profesor">Profesor(a)</option>
+              <option value="representante">Representante</option>
+            </select>
+          </div>
+
+          <!-- Login Administrador -->
+          <div id="login-admin" class="space-y-4">
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2"
+                >Usuario</label
+              >
+              <input
+                type="text"
+                id="admin-user"
+                placeholder="Usuario"
+                autocomplete="username"
+                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2"
+                >Contraseña</label
+              >
+              <input
+                type="password"
+                id="admin-pass"
+                placeholder="Contraseña"
+                autocomplete="current-password"
+                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+              />
+            </div>
+          </div>
+
+          <!-- Login Profesor -->
+          <div id="login-profesor" class="space-y-4 hidden">
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2"
+                >Cédula de Identidad</label
+              >
+              <input
+                type="text"
+                id="prof-login-ci"
+                placeholder="cedula"
+                autocomplete="off"
+                onkeydown="if (event.key === 'Enter') iniciarSesion();"
+                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2"
+                >Contraseña</label
+              >
+              <input
+                type="password"
+                id="prof-login-clave"
+                placeholder="Clave asignada por la administración"
+                autocomplete="current-password"
+                onkeydown="if (event.key === 'Enter') iniciarSesion();"
+                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+              />
+            </div>
+          </div>
+
+          <!-- Login Representante -->
+          <div id="login-representante" class="space-y-4 hidden">
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2"
+                >Cédula del Representante</label
+              >
+              <input
+                type="text"
+                id="rep-login-ci"
+                placeholder="cedula"
+                autocomplete="off"
+                onkeydown="if (event.key === 'Enter') iniciarSesion();"
+                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+              />
+            </div>
+            <p
+              class="text-[11px] text-slate-600 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 flex gap-2 items-start"
+            >
+              <i class="fa-solid fa-circle-info text-amber-500 mt-0.5"></i>
+              <span
+                >Tu cédula es la clave de acceso. Verás las notas y actividades
+                de todos tus hijos representados.</span
+              >
+            </p>
+          </div>
+
+          <div
+            id="login-error"
+            class="hidden text-[12px] text-rose-600 bg-rose-50 border border-rose-200 rounded-xl px-3 py-2.5 flex gap-2 items-center"
+          >
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span id="login-error-msg"></span>
+          </div>
+
+          <button
+            onclick="iniciarSesion()"
+            class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl text-sm transition-all shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2 mt-2"
+          >
+            <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión
+          </button>
+          <p class="text-[11px] text-center text-slate-400 mt-2">
+            Acceso seguro al sistema escolar
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= APP ================= -->
+    <div id="app-container" class="hidden flex h-screen overflow-hidden">
+      <aside id="sidebar" class="hidden md:flex md:flex-shrink-0">
+        <div class="flex flex-col w-64 bg-white border-r border-slate-200">
+          <div
+            class="flex items-center justify-center h-20 px-6 border-b border-slate-100 bg-gradient-to-r from-blue-50 to-indigo-50"
+          >
+            <div class="flex items-center space-x-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20"
+              >
+                <i class="fa-solid fa-school-flag text-lg"></i>
+              </div>
+              <div>
+                <span
+                  class="text-xs font-semibold text-brand-600 uppercase tracking-wider"
+                  >U.E. Primaria</span
+                >
+                <h1 class="text-base font-bold text-slate-800 leading-tight">
+                  María del Rosario
+                </h1>
+              </div>
+            </div>
+          </div>
+
+          <nav
+            id="sidebar-nav"
+            class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto custom-scrollbar"
+          ></nav>
+
+          <div class="p-4 border-t border-slate-100 bg-slate-50/50">
+            <div
+              class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span
+                  class="text-xs font-semibold text-slate-600 flex items-center gap-1.5"
+                >
+                  <span
+                    id="sync-dot"
+                    class="w-2 h-2 rounded-full bg-slate-300"
+                  ></span>
+                  <span id="rol-label">Administrador</span>
+                </span>
+                <button
+                  onclick="cerrarSesion()"
+                  class="text-rose-500 hover:text-rose-600 text-xs"
+                  title="Cerrar Sesión"
+                >
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+              </div>
+              <p
+                id="user-info"
+                class="text-[11px] text-slate-600 truncate font-medium"
+              ></p>
+              <p
+                id="sheet-status-text"
+                class="text-[11px] text-slate-500 truncate mt-1"
+              >
+                Modo local
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="flex flex-col flex-1 h-full overflow-hidden">
+        <header
+          class="flex items-center justify-between h-20 px-6 bg-white border-b border-slate-200 z-10"
+        >
+          <div class="flex items-center space-x-4">
+            <button
+              onclick="alternarSidebar()"
+              class="md:hidden text-slate-500 hover:text-slate-700 focus:outline-none"
+            >
+              <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+            <div>
+              <h2
+                id="page-title"
+                class="text-xl font-bold font-heading text-slate-800"
+              >
+                Resumen General
+              </h2>
+              <p class="text-xs text-slate-400">
+                Sistema automatizado de control escolar
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div
+              class="hidden sm:flex items-center bg-slate-100 px-3 py-2 rounded-xl border border-slate-200 text-sm"
+            >
+              <i class="fa-regular fa-calendar text-slate-400 mr-2"></i>
+              <span
+                id="current-date"
+                class="font-medium text-slate-600 text-xs"
+              ></span>
+            </div>
+            <div
+              class="flex items-center space-x-3 pl-4 border-l border-slate-200"
+            >
+              <div
+                class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm"
+                id="avatar-ini"
+              >
+                AD
+              </div>
+              <div class="hidden sm:block text-left">
+                <p class="text-xs font-bold text-slate-700" id="header-nombre">
+                  Usuario
+                </p>
+                <p
+                  class="text-[10px] text-emerald-600 font-medium"
+                  id="header-rol"
+                >
+                  En línea
+                </p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main
+          class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 p-6 custom-scrollbar"
+          id="main-content"
+        ></main>
+      </div>
+    </div>
+
+    <!-- ================= MODAL ALUMNO ================= -->
+    <div
+      id="modal-alumno"
+      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4 overflow-y-auto"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-slate-100 fade-in max-h-[92vh] overflow-y-auto custom-scrollbar"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3
+            class="text-lg font-bold text-slate-800 font-heading"
+            id="modal-alumno-title"
+          >
+            Inscribir Nuevo Alumno
+          </h3>
+          <button
+            onclick="cerrarModal('modal-alumno')"
+            class="text-slate-400 hover:text-slate-600"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <form
+          id="form-alumno"
+          onsubmit="guardarAlumno(event)"
+          class="space-y-4 text-sm"
+        >
+          <input type="hidden" id="alumno-id-orig" />
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Nombre y Apellido</label
+              >
+              <input type="text" id="alumno-nombre" required class="input" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Cédula Escolar</label
+              >
+              <input
+                type="text"
+                id="alumno-cedula"
+                required
+                placeholder="V-35.123.456"
+                class="input"
+              />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Grado</label
+              >
+              <select id="alumno-grado" class="input"></select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Profesor(a) asignado</label
+              >
+              <select id="alumno-profesor" class="input"></select>
+            </div>
+          </div>
+          <div class="border-t border-slate-100 pt-4">
+            <p
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3"
+            >
+              <i class="fa-solid fa-user-group mr-1.5"></i>Datos del
+              Representante
+            </p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1"
+                  >Nombre</label
+                >
+                <input type="text" id="alumno-rep" required class="input" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1">
+                  Cédula del Representante
+                  <span class="text-rose-500 font-normal normal-case"
+                    >(su clave de acceso)</span
+                  >
+                </label>
+                <input
+                  type="text"
+                  id="alumno-repci"
+                  required
+                  placeholder="V-30.111.001"
+                  class="input"
+                />
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1"
+                  >Teléfono WhatsApp</label
+                >
+                <input
+                  type="text"
+                  id="alumno-telefono"
+                  required
+                  placeholder="584242714023"
+                  class="input"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1"
+                  >Estatus de Pago</label
+                >
+                <select id="alumno-pago" class="input">
+                  <option value="Solvente">Solvente</option>
+                  <option value="Pendiente">Pendiente</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 flex justify-end gap-3">
+            <button
+              type="button"
+              onclick="cerrarModal('modal-alumno')"
+              class="btn-sec"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn-pri">
+              <i class="fa-solid fa-floppy-disk"></i> Guardar Alumno
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ================= MODAL PROFESOR ================= -->
+    <div
+      id="modal-profesor"
+      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4 overflow-y-auto"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-slate-100 fade-in max-h-[92vh] overflow-y-auto custom-scrollbar"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3
+            class="text-lg font-bold text-slate-800 font-heading"
+            id="modal-profesor-title"
+          >
+            Agregar Profesor(a)
+          </h3>
+          <button
+            onclick="cerrarModal('modal-profesor')"
+            class="text-slate-400 hover:text-slate-600"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <form
+          id="form-profesor"
+          onsubmit="guardarProfesor(event)"
+          class="space-y-4 text-sm"
+        >
+          <input type="hidden" id="profesor-id-orig" />
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Nombre y Apellido</label
+              >
+              <input
+                type="text"
+                id="profesor-nombre"
+                required
+                placeholder="Prof. María Elena González"
+                class="input"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Cédula de Identidad</label
+              >
+              <input
+                type="text"
+                id="profesor-cedula"
+                required
+                placeholder="V-12.345.001"
+                class="input"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Teléfono</label
+              >
+              <input
+                type="text"
+                id="profesor-telefono"
+                placeholder="04141234001"
+                class="input"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Grado asignado</label
+              >
+              <select id="profesor-grado" class="input"></select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Clave de acceso</label
+              >
+              <input
+                type="text"
+                id="profesor-clave"
+                placeholder="Se genera si la dejas vacía"
+                class="input"
+              />
+            </div>
+          </div>
+          <label class="flex items-center gap-2.5 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              id="profesor-activo"
+              checked
+              class="w-4 h-4 rounded border-slate-300 text-brand-600"
+            />
+            <span class="text-sm text-slate-700"
+              >Profesor(a) activo (puede iniciar sesión)</span
+            >
+          </label>
+          <div
+            class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-[12px] text-slate-600"
+          >
+            <i class="fa-solid fa-key text-brand-500 mr-1.5"></i>
+            El profesor inicia sesión con su <strong>cédula</strong> y esta
+            <strong>clave</strong>. Comunícale ambos datos.
+          </div>
+          <div class="pt-4 flex justify-end gap-3">
+            <button
+              type="button"
+              onclick="cerrarModal('modal-profesor')"
+              class="btn-sec"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn-pri">
+              <i class="fa-solid fa-floppy-disk"></i> Guardar Profesor
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ================= MODAL EVALUACION ================= -->
+    <div
+      id="modal-evaluacion"
+      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4 overflow-y-auto"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-slate-100 fade-in max-h-[92vh] overflow-y-auto custom-scrollbar"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3
+            class="text-lg font-bold text-slate-800 font-heading"
+            id="modal-evaluacion-title"
+          >
+            Nueva Actividad
+          </h3>
+          <button
+            onclick="cerrarModal('modal-evaluacion')"
+            class="text-slate-400 hover:text-slate-600"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <form
+          id="form-evaluacion"
+          onsubmit="guardarEvaluacion(event)"
+          class="space-y-4 text-sm"
+        >
+          <input type="hidden" id="evaluacion-id-orig" />
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Título de la Actividad</label
+            >
+            <input
+              type="text"
+              id="evaluacion-titulo"
+              required
+              placeholder="Ej. Examen de Matemática - Unidad 1"
+              class="input"
+            />
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Materia</label
+              >
+              <select id="evaluacion-materia" required class="input"></select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Tipo</label
+              >
+              <select id="evaluacion-tipo" class="input">
+                <option value="Examen">Examen</option>
+                <option value="Prueba">Prueba</option>
+                <option value="Tarea">Tarea</option>
+                <option value="Trabajo Práctico">Trabajo Práctico</option>
+                <option value="Proyecto">Proyecto</option>
+                <option value="Participación">Participación</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Lapso</label
+              >
+              <select id="evaluacion-lapso" class="input">
+                <option value="I">Lapso I</option>
+                <option value="II">Lapso II</option>
+                <option value="III">Lapso III</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Fecha</label
+              >
+              <input type="date" id="evaluacion-fecha" class="input" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Ponderación (%)</label
+              >
+              <input
+                type="number"
+                id="evaluacion-ponderacion"
+                min="0"
+                max="100"
+                step="1"
+                value="100"
+                class="input"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Nota Máxima</label
+            >
+            <input
+              type="number"
+              id="evaluacion-notamax"
+              min="1"
+              step="1"
+              value="20"
+              class="input"
+            />
+          </div>
+          <div class="pt-4 flex justify-end gap-3">
+            <button
+              type="button"
+              onclick="cerrarModal('modal-evaluacion')"
+              class="btn-sec"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn-pri">
+              <i class="fa-solid fa-floppy-disk"></i> Guardar Actividad
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ================= MODAL CLAVE ADMIN ================= -->
+    <div
+      id="modal-clave-admin"
+      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+    >
+      <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl fade-in">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-bold text-slate-800 font-heading">
+            Cambiar contraseña del administrador
+          </h3>
+          <button
+            onclick="cerrarModal('modal-clave-admin')"
+            class="text-slate-400 hover:text-slate-600"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <form
+          id="form-clave-admin"
+          onsubmit="guardarClaveAdmin(event)"
+          class="space-y-4 text-sm"
+        >
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Nueva contraseña</label
+            >
+            <input
+              type="text"
+              id="admin-clave-nueva"
+              required
+              minlength="4"
+              class="input"
+            />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Repetir contraseña</label
+            >
+            <input
+              type="text"
+              id="admin-clave-repetir"
+              required
+              class="input"
+            />
+          </div>
+          <div class="pt-2 flex justify-end gap-3">
+            <button
+              type="button"
+              onclick="cerrarModal('modal-clave-admin')"
+              class="btn-sec"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn-pri">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      /* =========================================================
+         CONSTANTES
+      ========================================================= */
+      const MATERIAS_PRIMARIA = [
+        "Español",
+        "Matemática",
+        "Ciencias Naturales",
+        "Ciencias Sociales",
+        "Lengua y Literatura",
+        "Inglés",
+        "Formación Ciudadana",
+        "Educación Física",
+      ];
+      const GRADOS_LIST = [
+        "1er Grado",
+        "2do Grado",
+        "3er Grado",
+        "4to Grado",
+        "5to Grado",
+        "6to Grado",
+      ];
+      const NOTA_APROBACION = 50;
+      const LS_DB = "escuela_db_v1";
+      const LS_URL = "escuela_sheet_url";
+      const URL_HOJA_POR_DEFECTO =
+        "https://script.google.com/macros/s/AKfycbyXOQHfV1XpjDbxK25oPZurqfDc4GpQtCzHqpWN0n5XH3YeHky4fYlMWaRNW55xAjLfkw/exec";
+
+      const NOMBRE_ESCUELA = 'U.E. Primaria "María del Rosario"';
+      const MENSAJE_WA_DEFECTO =
+        "Estimado(a) {representante}, reciba un cordial saludo de la " +
+        NOMBRE_ESCUELA +
+        ".";
+      const PLANTILLAS_WA = [
+        {
+          id: "pago",
+          titulo: "Recordatorio de pago",
+          ico: "fa-hand-holding-dollar",
+          texto:
+            "Estimado(a) {representante}, reciba un cordial saludo de la " +
+            NOMBRE_ESCUELA +
+            ". Le recordamos que su representado(a) {alumno} ({grado}) mantiene un pago PENDIENTE. Agradecemos su colaboración para ponerse al día con la administración. ¡Gracias!",
+        },
+        {
+          id: "actividad",
+          titulo: "Próxima actividad",
+          ico: "fa-calendar-check",
+          texto:
+            "Estimado(a) {representante}, le informamos que su representado(a) {alumno} de {grado} tiene una actividad próxima. Ingrese al sistema con su cédula para consultar los detalles. " +
+            NOMBRE_ESCUELA +
+            ".",
+        },
+        {
+          id: "notas",
+          titulo: "Notas disponibles",
+          ico: "fa-star",
+          texto:
+            "Estimado(a) {representante}, ya están disponibles las notas de {alumno} ({grado}). Ingrese al sistema con su cédula para consultarlas. " +
+            NOMBRE_ESCUELA +
+            ".",
+        },
+        {
+          id: "reunion",
+          titulo: "Reunión de representantes",
+          ico: "fa-people-group",
+          texto:
+            "Estimado(a) {representante}, le invitamos a la reunión de representantes de {grado}. Su presencia es muy importante. " +
+            NOMBRE_ESCUELA +
+            ".",
+        },
+        {
+          id: "inasistencia",
+          titulo: "Inasistencia",
+          ico: "fa-triangle-exclamation",
+          texto:
+            "Estimado(a) {representante}, le informamos que {alumno} ({grado}) ha presentado inasistencias. Le agradecemos comunicarse con la institución. " +
+            NOMBRE_ESCUELA +
+            ".",
+        },
+      ];
+
+      /* =========================================================
+         DATOS INICIALES
+      ========================================================= */
+      const SEMILLA = {
+        alumnos: [
+          {
+            cedulaEscolar: "V-35.102.489",
+            nombre: "Sofía Alejandra Pérez",
+            grado: "1er Grado",
+            representante: "Mariana Pérez",
+            repCedula: "V-30.111.001",
+            telefono: "584121234567",
+            pago: "Solvente",
+            profesorId: "P001",
+          },
+          {
+            cedulaEscolar: "V-35.102.490",
+            nombre: "Isabella Sofía Pérez",
+            grado: "1er Grado",
+            representante: "Mariana Pérez",
+            repCedula: "V-30.111.001",
+            telefono: "584121234567",
+            pago: "Solvente",
+            profesorId: "P001",
+          },
+          {
+            cedulaEscolar: "V-35.489.123",
+            nombre: "Santiago José Rivas",
+            grado: "2do Grado",
+            representante: "Carlos Rivas",
+            repCedula: "V-30.111.002",
+            telefono: "584249876543",
+            pago: "Solvente",
+            profesorId: "P002",
+          },
+          {
+            cedulaEscolar: "V-34.982.112",
+            nombre: "Valeria Valentina Gómez",
+            grado: "3er Grado",
+            representante: "Ana Gómez",
+            repCedula: "V-30.111.003",
+            telefono: "584145558899",
+            pago: "Pendiente",
+            profesorId: "P003",
+          },
+          {
+            cedulaEscolar: "V-36.112.993",
+            nombre: "Lucas Gabriel Hernández",
+            grado: "1er Grado",
+            representante: "Pedro Hernández",
+            repCedula: "V-30.111.004",
+            telefono: "584123334455",
+            pago: "Solvente",
+            profesorId: "P001",
+          },
+          {
+            cedulaEscolar: "V-33.882.441",
+            nombre: "Camila Andrea Castillo",
+            grado: "4to Grado",
+            representante: "Luisa Castillo",
+            repCedula: "V-30.111.005",
+            telefono: "584241112233",
+            pago: "Pendiente",
+            profesorId: "P004",
+          },
+          {
+            cedulaEscolar: "V-37.001.223",
+            nombre: "Mateo Alejandro Rojas",
+            grado: "5to Grado",
+            representante: "Carmen Rojas",
+            repCedula: "V-30.111.006",
+            telefono: "584167778899",
+            pago: "Solvente",
+            profesorId: "P005",
+          },
+        ],
+        profesores: [
+          {
+            id: "P001",
+            cedula: "V-12.345.001",
+            nombre: "Prof. María Elena González",
+            clave: "1234",
+            telefono: "04141234001",
+            grado: "1er Grado",
+            activo: true,
+          },
+          {
+            id: "P002",
+            cedula: "V-12.345.002",
+            nombre: "Prof. José Antonio Torres",
+            clave: "1234",
+            telefono: "04141234002",
+            grado: "2do Grado",
+            activo: true,
+          },
+          {
+            id: "P003",
+            cedula: "V-12.345.003",
+            nombre: "Prof. Ana Luisa Ramírez",
+            clave: "1234",
+            telefono: "04141234003",
+            grado: "3er Grado",
+            activo: true,
+          },
+          {
+            id: "P004",
+            cedula: "V-12.345.004",
+            nombre: "Prof. Carlos Eduardo Medina",
+            clave: "1234",
+            telefono: "04141234004",
+            grado: "4to Grado",
+            activo: true,
+          },
+          {
+            id: "P005",
+            cedula: "V-12.345.005",
+            nombre: "Prof. Luisa Fernanda Blanco",
+            clave: "1234",
+            telefono: "04141234005",
+            grado: "5to Grado",
+            activo: true,
+          },
+          {
+            id: "P006",
+            cedula: "V-12.345.006",
+            nombre: "Prof. Roberto Javier Suárez",
+            clave: "1234",
+            telefono: "04141234006",
+            grado: "6to Grado",
+            activo: true,
+          },
+        ],
+        evaluaciones: [
+          {
+            id: "EV-1001",
+            profesorId: "P001",
+            grado: "1er Grado",
+            titulo: "Examen de Matemática - Unidad 1",
+            materia: "Matemática",
+            tipo: "Examen",
+            lapso: "I",
+            fecha: "2026-09-18",
+            ponderacion: "40",
+            notaMax: "20",
+          },
+          {
+            id: "EV-1002",
+            profesorId: "P001",
+            grado: "1er Grado",
+            titulo: "Tarea de Español",
+            materia: "Español",
+            tipo: "Tarea",
+            lapso: "I",
+            fecha: "2026-10-02",
+            ponderacion: "20",
+            notaMax: "20",
+          },
+          {
+            id: "EV-1003",
+            profesorId: "P001",
+            grado: "1er Grado",
+            titulo: "Proyecto Ciencias Naturales",
+            materia: "Ciencias Naturales",
+            tipo: "Proyecto",
+            lapso: "II",
+            fecha: "2026-10-20",
+            ponderacion: "40",
+            notaMax: "20",
+          },
+          {
+            id: "EV-1004",
+            profesorId: "P002",
+            grado: "2do Grado",
+            titulo: "Prueba de Lengua y Literatura",
+            materia: "Lengua y Literatura",
+            tipo: "Prueba",
+            lapso: "II",
+            fecha: "2026-10-25",
+            ponderacion: "50",
+            notaMax: "20",
+          },
+        ],
+        notas: [
+          { evaluacionId: "EV-1001", estudianteId: "V-35.102.489", nota: "18" },
+          { evaluacionId: "EV-1001", estudianteId: "V-35.102.490", nota: "17" },
+          { evaluacionId: "EV-1001", estudianteId: "V-36.112.993", nota: "15" },
+          { evaluacionId: "EV-1002", estudianteId: "V-35.102.489", nota: "20" },
+          { evaluacionId: "EV-1002", estudianteId: "V-35.102.490", nota: "19" },
+          { evaluacionId: "EV-1002", estudianteId: "V-36.112.993", nota: "14" },
+          { evaluacionId: "EV-1003", estudianteId: "V-35.102.489", nota: "16" },
+          { evaluacionId: "EV-1003", estudianteId: "V-36.112.993", nota: "13" },
+          { evaluacionId: "EV-1004", estudianteId: "V-35.489.123", nota: "17" },
+        ],
+        usuarios: [
+          {
+            id: "admin-default",
+            usuario: "admin",
+            clave: "admin",
+            rol: "admin",
+            nombre: "Administrador",
+          },
+        ],
+      };
+
+      /* =========================================================
+         ESTADO
+      ========================================================= */
+      let db = {
+        alumnos: [],
+        profesores: [],
+        evaluaciones: [],
+        notas: [],
+        usuarios: [],
+      };
+      let urlHoja = "";
+      let estadoSync = "local";
+      let currentRole = null;
+      let currentUser = null;
+      let currentTab = "dashboard";
+      let filtroLapso = "todos";
+      let evalSeleccionada = null;
+      let alumnoEnDetalle = null;
+      let filtroGradoAdmin = "todos";
+      let clavesVisibles = {};
+      let colaSync = [];
+      let temporizadorCola = null;
+      let ultimoErrorSync = "";
+      let waMensaje = MENSAJE_WA_DEFECTO;
+      let waSeleccion = {};
+      let waResultado = [];
+
+      /* =========================================================
+         UTILIDADES
+      ========================================================= */
+      function norm(x) {
+        return String(x == null ? "" : x)
+          .toUpperCase()
+          .replace(/[^A-Z0-9]/g, "");
+      }
+      function esc(x) {
+        return String(x == null ? "" : x)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      function attr(x) {
+        return encodeURIComponent(String(x == null ? "" : x));
+      }
+      function uid(prefijo) {
+        return (
+          prefijo +
+          "-" +
+          Date.now().toString(36).toUpperCase() +
+          Math.floor(Math.random() * 900 + 100)
+        );
+      }
+      function iniciales(nombre) {
+        return String(nombre || "")
+          .replace(/^(Prof\.?|Profa\.?|Sr\.?|Sra\.?|Sr(a)\.?)\s+/i, "")
+          .split(" ")
+          .filter(Boolean)
+          .map((x) => x[0])
+          .join("")
+          .substring(0, 2)
+          .toUpperCase();
+      }
+      function num(x) {
+        const n = parseFloat(x);
+        return isNaN(n) ? 0 : n;
+      }
+      function fechar(x) {
+        if (!x) return "-";
+        const f = new Date(String(x) + "T00:00:00");
+        if (isNaN(f.getTime())) return String(x);
+        return f.toLocaleDateString("es-VE", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+      }
+      function badgePago(p) {
+        return p === "Solvente"
+          ? '<span class="badge bg-emerald-50 text-emerald-700">Solvente</span>'
+          : '<span class="badge bg-amber-50 text-amber-700">Pendiente</span>';
+      }
+      function filaVacia(mensaje, colspan) {
+        return (
+          '<tr><td colspan="' +
+          colspan +
+          '" class="td text-center text-slate-400 py-6">' +
+          esc(mensaje) +
+          "</td></tr>"
+        );
+      }
+
+      /* =========================================================
+         CAPA DE DATOS (Google Sheets + cache local)
+      ========================================================= */
+      function guardarLocal() {
+        try {
+          localStorage.setItem(LS_DB, JSON.stringify(db));
+        } catch (e) {
+          console.warn("No se pudo guardar en el navegador", e);
+        }
+      }
+      function cargarLocal() {
+        try {
+          const crudo = localStorage.getItem(LS_DB);
+          if (!crudo) return false;
+          const obj = JSON.parse(crudo);
+          Object.keys(db).forEach((k) => {
+            if (Array.isArray(obj[k])) db[k] = obj[k];
+          });
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+      function normalizar() {
+        db.alumnos = db.alumnos || [];
+        db.profesores = db.profesores || [];
+        db.evaluaciones = db.evaluaciones || [];
+        db.notas = db.notas || [];
+        db.usuarios = db.usuarios || [];
+        if (!db.usuarios.some((u) => u.rol === "admin")) {
+          db.usuarios.push({
+            id: "admin-default",
+            usuario: "admin",
+            clave: "admin",
+            rol: "admin",
+            nombre: "Administrador",
+          });
+        }
+        db.profesores.forEach((p) => {
+          if (p.activo === undefined || p.activo === "") p.activo = true;
+        });
+        db.alumnos.forEach((a) => {
+          if (a.repCedula === undefined) a.repCedula = "";
+          if (!a.profesorId) {
+            const p = db.profesores.find((x) => x.grado === a.grado);
+            a.profesorId = p ? p.id : "";
+          }
+        });
+        guardarLocal();
+      }
+
+      async function llamarHoja(accion) {
+        if (!urlHoja) throw new Error("Sin URL de Google Sheets");
+        const esLectura = accion === "leer";
+        const url = esLectura ? urlHoja + "?accion=leer" : urlHoja;
+        const opciones = { method: esLectura ? "GET" : "POST" };
+        if (!esLectura) {
+          opciones.headers = { "Content-Type": "text/plain;charset=utf-8" };
+          opciones.body = JSON.stringify(accion);
+        }
+        const res = await fetch(url, opciones);
+        if (!res.ok) {
+          if (res.status === 403 || res.status === 401) {
+            const err = new Error(
+              "HTTP " +
+                res.status +
+                " - el Web App no es público. Vuelve a Apps Script > Implementar > Nueva implementación > Aplicación web > Quién tiene acceso: Cualquiera"
+            );
+            err.codigo = res.status;
+            throw err;
+          }
+          throw new Error("HTTP " + res.status);
+        }
+        const json = await res.json();
+        if (!json.ok) throw new Error(json.error || "Error desconocido");
+        return json;
+      }
+
+      function marcarSync(estado, texto) {
+        estadoSync = estado;
+        const punto = document.getElementById("sync-dot");
+        const txt = document.getElementById("sheet-status-text");
+        if (!punto || !txt) return;
+        const estilos = {
+          conectado: ["bg-emerald-500", "Google Sheets conectado"],
+          sincronizando: [
+            "bg-amber-400 animate-pulse",
+            "Guardando en la hoja...",
+          ],
+          error: ["bg-rose-500", "Error al guardar en la hoja"],
+          local: ["bg-slate-300", "Modo local (sin Sheets)"],
+        };
+        const e = estilos[estado] || estilos.local;
+        punto.className = "w-2 h-2 rounded-full " + e[0];
+        txt.innerText = texto || e[1];
+      }
+
+      async function sincronizar() {
+        if (!urlHoja) {
+          marcarSync("local");
+          return false;
+        }
+        marcarSync("sincronizando");
+        try {
+          const r = await llamarHoja("leer");
+          const datosLocales = db;
+          const hayLocal =
+            db.alumnos.length +
+              db.profesores.length +
+              db.evaluaciones.length +
+              db.notas.length >
+            0;
+          const hayRemoto =
+            r.data.alumnos.length +
+              r.data.profesores.length +
+              r.data.evaluaciones.length +
+              r.data.notas.length >
+            0;
+          if (!hayRemoto && hayLocal) {
+            await llamarHoja({ op: "sembrar", data: datosLocales });
+            marcarSync("conectado", "Hoja inicializada con tus datos");
+            return true;
+          }
+          Object.keys(db).forEach((k) => {
+            if (Array.isArray(r.data[k])) db[k] = r.data[k];
+          });
+          normalizar();
+          marcarSync("conectado");
+          return true;
+        } catch (e) {
+          console.warn("No se pudo leer de la hoja", e);
+          ultimoErrorSync = e.message || String(e);
+          marcarSync("error");
+          return false;
+        }
+      }
+
+      function encolar(ops) {
+        if (!ops || !ops.length) return;
+        if (!urlHoja) return;
+        colaSync = colaSync.concat(ops);
+        marcarSync("sincronizando");
+        clearTimeout(temporizadorCola);
+        temporizadorCola = setTimeout(vaciarCola, 500);
+      }
+
+      async function vaciarCola() {
+        if (!urlHoja || colaSync.length === 0) return;
+        const lote = colaSync;
+        colaSync = [];
+        try {
+          await llamarHoja({ op: "lote", ops: lote });
+          ultimoErrorSync = "";
+          marcarSync("conectado");
+        } catch (e) {
+          console.warn("No se pudo guardar en la hoja", e);
+          ultimoErrorSync = e.message || String(e);
+          colaSync = lote.concat(colaSync);
+          marcarSync("error");
+        }
+      }
+
+      function guardarEntidad(entidad, fila) {
+        guardarLocal();
+        encolar([{ op: "upsert", entity: entidad, row: fila }]);
+      }
+      function borrarEntidad(entidad, id) {
+        guardarLocal();
+        encolar([{ op: "borrar", entity: entidad, id: id }]);
+      }
+
+      /* =========================================================
+         CONSULTAS
+      ========================================================= */
+      function getAlumno(id) {
+        return db.alumnos.find((a) => a.cedulaEscolar === id) || null;
+      }
+      function getProfesor(id) {
+        return db.profesores.find((p) => p.id === id) || null;
+      }
+      function getEvaluacion(id) {
+        return db.evaluaciones.find((e) => e.id === id) || null;
+      }
+      function alumnosPorGrado(g) {
+        return db.alumnos.filter((a) => a.grado === g);
+      }
+      function alumnosPorProfesor(pid) {
+        return db.alumnos
+          .filter((a) => a.profesorId === pid)
+          .sort((a, b) => a.nombre.localeCompare(b.nombre));
+      }
+      function alumnosPorRepresentante(ci) {
+        const clave = norm(ci);
+        return db.alumnos
+          .filter((a) => norm(a.repCedula) === clave)
+          .sort((a, b) => a.nombre.localeCompare(b.nombre));
+      }
+      function representantes() {
+        const mapa = {};
+        db.alumnos.forEach((a) => {
+          const clave = norm(a.repCedula);
+          if (!clave) return;
+          if (!mapa[clave]) {
+            mapa[clave] = {
+              clave: clave,
+              nombre: a.representante || "Representante",
+              cedula: a.repCedula || "",
+              telefono: a.telefono || "",
+              hijos: [],
+            };
+          }
+          mapa[clave].hijos.push(a);
+          if (!mapa[clave].telefono && a.telefono)
+            mapa[clave].telefono = a.telefono;
+        });
+        return Object.keys(mapa)
+          .map((k) => mapa[k])
+          .sort((a, b) => a.nombre.localeCompare(b.nombre));
+      }
+      function telefonoWhatsApp(t) {
+        let d = String(t == null ? "" : t).replace(/\D/g, "");
+        if (!d) return "";
+        if (d.indexOf("58") === 0) return d;
+        if (d.charAt(0) === "0") return "58" + d.slice(1);
+        if (d.length === 10) return "58" + d;
+        return d;
+      }
+      function enlaceWhatsApp(telefono, mensaje) {
+        const numero = telefonoWhatsApp(telefono);
+        if (!numero) return "";
+        const texto = encodeURIComponent(String(mensaje || ""));
+        return "https://wa.me/" + numero + (texto ? "?text=" + texto : "");
+      }
+      function abrirWhatsApp(telefono, mensaje) {
+        const url = enlaceWhatsApp(telefono, mensaje);
+        if (!url)
+          return alert("Este representante no tiene un teléfono registrado.");
+        window.open(url, "_blank");
+      }
+      function aplicarPlantilla(texto, rep) {
+        const hijos = rep.hijos.map((h) => h.nombre).join(", ");
+        const grados = Array.from(new Set(rep.hijos.map((h) => h.grado)))
+          .filter(Boolean)
+          .join(", ");
+        return String(texto == null ? "" : texto)
+          .replace(/\{representante\}/g, rep.nombre || "")
+          .replace(/\{alumno\}/g, hijos || "su representado(a)")
+          .replace(/\{grado\}/g, grados || "")
+          .replace(/\{cedula\}/g, rep.cedula || "");
+      }
+      function getNota(evId, estId) {
+        const n = db.notas.find(
+          (x) => x.evaluacionId === evId && x.estudianteId === estId,
+        );
+        if (!n || n.nota === "" || n.nota === null || n.nota === undefined)
+          return null;
+        return num(n.nota);
+      }
+      function porcentaje(ev, nota) {
+        const max = num(ev.notaMax) || 20;
+        return max > 0 ? (nota / max) * 100 : 0;
+      }
+      function actividadesDeAlumno(alumnoId) {
+        const alumno = getAlumno(alumnoId);
+        if (!alumno) return [];
+        const grado = alumno.grado;
+        return db.evaluaciones
+          .filter((e) => {
+            if (e.grado === grado) return true;
+            const prof = getProfesor(e.profesorId);
+            return !!prof && prof.grado === grado;
+          })
+          .sort(
+            (a, b) =>
+              String(a.lapso).localeCompare(String(b.lapso)) ||
+              String(a.fecha).localeCompare(String(b.fecha)),
+          );
+      }
+      function resumenAlumno(alumnoId) {
+        const acts = actividadesDeAlumno(alumnoId);
+        let suma = 0;
+        let n = 0;
+        acts.forEach((ev) => {
+          const nota = getNota(ev.id, alumnoId);
+          if (nota === null) return;
+          suma += porcentaje(ev, nota);
+          n++;
+        });
+        return {
+          actividades: acts.length,
+          calificadas: n,
+          promedio: n > 0 ? suma / n : null,
+        };
+      }
+
+      /* =========================================================
+         LOGIN
+      ========================================================= */
+      function cambiarRolLogin() {
+        const r = document.getElementById("login-rol").value;
+        ["admin", "profesor", "representante"].forEach((x) => {
+          document
+            .getElementById("login-" + x)
+            .classList.toggle("hidden", x !== r);
+        });
+        document.getElementById("login-error").classList.add("hidden");
+        document.getElementById("admin-pass").value = "";
+        document.getElementById("prof-login-clave").value = "";
+      }
+      function mostrarErrorLogin(msg) {
+        document.getElementById("login-error-msg").innerText = msg;
+        document.getElementById("login-error").classList.remove("hidden");
+      }
+
+      async function iniciarSesion() {
+        const rol = document.getElementById("login-rol").value;
+        document.getElementById("login-error").classList.add("hidden");
+
+        // El ingreso nunca espera a la red: se valida contra la copia local y, si hay
+// URL configurada, la sincronización sigue en segundo plano. Asi el profesor o
+// el representante pueden entrar aunque la hoja este lenta o no responda.
+if (urlHoja && estadoSync !== "conectado") {
+          sincronizar().then((ok) => {
+            if (ok && currentRole) render();
+          });
+        }
+
+        if (rol === "admin") {
+          const usuario = document.getElementById("admin-user").value.trim();
+          const clave = document.getElementById("admin-pass").value;
+          const u = db.usuarios.find(
+            (x) =>
+              x.rol === "admin" &&
+              x.usuario === usuario &&
+              String(x.clave) === clave,
+          );
+          if (!u) {
+            mostrarErrorLogin("Usuario o contraseña incorrectos.");
+            return;
+          }
+          currentRole = "admin";
+          currentUser = {
+            nombre: u.nombre || "Administrador",
+            usuario: u.usuario,
+            rol: "admin",
+          };
+          abrirApp("dashboard");
+          return;
+        }
+
+        if (rol === "profesor") {
+          const ci = document.getElementById("prof-login-ci").value.trim();
+          const clave = document.getElementById("prof-login-clave").value;
+          if (!ci || !clave) {
+            mostrarErrorLogin("Ingresa tu cédula y tu clave.");
+            return;
+          }
+          const p = db.profesores.find((x) => norm(x.cedula) === norm(ci));
+          if (!p) {
+            mostrarErrorLogin(
+              "No hay ningún profesor registrado con esa cédula.",
+            );
+            return;
+          }
+          if (p.activo === false || p.activo === "false") {
+            mostrarErrorLogin(
+              "Tu cuenta está inactiva. Contacta a la administración.",
+            );
+            return;
+          }
+          if (String(p.clave) !== clave) {
+            mostrarErrorLogin("Clave incorrecta.");
+            return;
+          }
+          currentRole = "profesor";
+          currentUser = Object.assign({}, p, { rol: "profesor" });
+          document.getElementById("prof-login-clave").value = "";
+          abrirApp("notas");
+          return;
+        }
+
+        if (rol === "representante") {
+          const ci = document.getElementById("rep-login-ci").value.trim();
+          if (!ci) {
+            mostrarErrorLogin("Ingresa tu cédula.");
+            return;
+          }
+          const hijos = alumnosPorRepresentante(ci);
+          if (hijos.length === 0) {
+            mostrarErrorLogin(
+              "No encontramos alumnos representados con esa cédula. Verifica el número o pide a la administración que lo registre.",
+            );
+            return;
+          }
+          currentRole = "representante";
+          currentUser = {
+            nombre: hijos[0].representante,
+            cedula: hijos[0].repCedula,
+            rol: "representante",
+            hijos: hijos.map((h) => h.cedulaEscolar),
+          };
+          document.getElementById("rep-login-ci").value = "";
+          abrirApp("notas");
+        }
+      }
+
+      function cerrarSesion() {
+        currentRole = null;
+        currentUser = null;
+        currentTab = "dashboard";
+        evalSeleccionada = null;
+        alumnoEnDetalle = null;
+        clavesVisibles = {};
+        document.getElementById("admin-pass").value = "";
+        document.getElementById("prof-login-clave").value = "";
+        document.getElementById("login-screen").classList.remove("hidden");
+        const app = document.getElementById("app-container");
+        app.classList.add("hidden");
+        app.classList.remove("flex");
+      }
+
+      function abrirApp(tabsInicial) {
+        document.getElementById("login-screen").classList.add("hidden");
+        const app = document.getElementById("app-container");
+        app.classList.remove("hidden");
+        app.classList.add("flex");
+
+        document.getElementById("current-date").innerText =
+          new Date().toLocaleDateString("es-ES", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+        const etiquetas = {
+          admin: "Administrador",
+          profesor: "Profesor(a)",
+          representante: "Representante",
+        };
+        document.getElementById("rol-label").innerText = etiquetas[currentRole];
+        document.getElementById("user-info").innerText = currentUser.nombre;
+
+        if (currentRole === "admin") {
+          document.getElementById("header-nombre").innerText =
+            "Coordinación Académica";
+          document.getElementById("header-rol").innerText = "Administrador";
+          document.getElementById("avatar-ini").innerText = "AD";
+        } else if (currentRole === "profesor") {
+          document.getElementById("header-nombre").innerText =
+            currentUser.nombre;
+          document.getElementById("header-rol").innerText =
+            currentUser.grado || "Sin grado";
+          document.getElementById("avatar-ini").innerText = iniciales(
+            currentUser.nombre,
+          );
+        } else {
+          document.getElementById("header-nombre").innerText =
+            currentUser.nombre;
+          document.getElementById("header-rol").innerText =
+            currentUser.hijos.length + " hijo(s) representado(s)";
+          document.getElementById("avatar-ini").innerText = iniciales(
+            currentUser.nombre,
+          );
+        }
+
+        marcarSync(estadoSync);
+        construirMenu();
+        cambiarTab(tabsInicial);
+      }
+
+      function alternarSidebar() {
+        const sb = document.getElementById("sidebar");
+        sb.classList.toggle("hidden");
+        sb.classList.toggle("md:flex");
+      }
+
+      /* =========================================================
+         MENÚ
+      ========================================================= */
+      const MENUS = {
+        admin: [
+          { grupo: "Principal" },
+          { id: "dashboard", txt: "Resumen General", ico: "fa-chart-pie" },
+          { id: "alumnos", txt: "Matrícula Alumnos", ico: "fa-children" },
+          { grupo: "Profesores" },
+          {
+            id: "profesores",
+            txt: "Profesores y Claves",
+            ico: "fa-chalkboard-user",
+          },
+          { grupo: "Notas" },
+          { id: "notas", txt: "Notas y Actividades", ico: "fa-star" },
+          { grupo: "Comunicación" },
+          {
+            id: "whatsapp",
+            txt: "Recordatorios WhatsApp",
+            ico: "fa-comment-dots",
+          },
+          { grupo: "Sistema" },
+          { id: "config", txt: "Configuración", ico: "fa-gear" },
+        ],
+        profesor: [
+          { grupo: "Mi Aula" },
+          { id: "notas", txt: "Notas y Actividades", ico: "fa-star" },
+          { id: "estudiantes", txt: "Mis Estudiantes", ico: "fa-children" },
+          { id: "evaluaciones", txt: "Actividades", ico: "fa-clipboard-list" },
+        ],
+        representante: [
+          { grupo: "Seguimiento Escolar" },
+          { id: "notas", txt: "Notas y Actividades", ico: "fa-star" },
+        ],
+      };
+
+      const TITULOS = {
+        dashboard: "Resumen General",
+        alumnos: "Matrícula de Alumnos",
+        profesores: "Profesores y Claves",
+        notas: "Notas y Actividades",
+        estudiantes: "Mis Estudiantes",
+        evaluaciones: "Actividades",
+        whatsapp: "Recordatorios por WhatsApp",
+        config: "Configuración",
+      };
+
+      function construirMenu() {
+        const nav = document.getElementById("sidebar-nav");
+        nav.innerHTML = MENUS[currentRole]
+          .map((m) => {
+            if (m.grupo) {
+              return (
+                '<p class="px-3 pt-4 pb-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider">' +
+                esc(m.grupo) +
+                "</p>"
+              );
+            }
+            return (
+              '<a href="#" data-accion="tab" data-arg="' +
+              m.id +
+              '" data-tab="' +
+              m.id +
+              '" id="nav-' +
+              m.id +
+              '" class="nav-item' +
+              (currentTab === m.id ? " activo" : "") +
+              '"><i class="fa-solid ' +
+              m.ico +
+              ' ico"></i>' +
+              esc(m.txt) +
+              "</a>"
+            );
+          })
+          .join("");
+      }
+
+      function cambiarTab(t) {
+        currentTab = t;
+        alumnoEnDetalle = null;
+        waResultado = [];
+        document.querySelectorAll("#sidebar-nav [data-tab]").forEach((a) => {
+          a.classList.toggle("activo", a.dataset.tab === t);
+        });
+        document.getElementById("page-title").innerText = TITULOS[t] || "Panel";
+        render();
+      }
+
+      function render() {
+        const mc = document.getElementById("main-content");
+        let html = "";
+        if (currentRole === "admin") html = vistaAdmin(currentTab);
+        else if (currentRole === "profesor") html = vistaProfesor(currentTab);
+        else if (currentRole === "representante")
+          html = vistaRepresentante(currentTab);
+        mc.innerHTML = html;
+        if (currentRole === "admin" && currentTab === "config")
+          restaurarInputUrl();
+      }
+
+      /* =========================================================
+         DELEGACIÓN DE EVENTOS
+      ========================================================= */
+      const ACCIONES = {
+        tab: (t) => cambiarTab(t),
+        volver: () => {
+          alumnoEnDetalle = null;
+          render();
+        },
+        filtrarGradoAdmin: (v) => {
+          filtroGradoAdmin = v;
+          render();
+        },
+        filtrarLapsoProf: (v) => {
+          filtroLapso = v;
+          render();
+        },
+        seleccionarEval: (v) => {
+          evalSeleccionada = v || null;
+          render();
+        },
+
+        alumnoNuevo: () => abrirModalAlumno(),
+        alumnoEditar: (id) => abrirModalAlumno(id),
+        alumnoBorrar: (id) => {
+          const a = getAlumno(id);
+          if (!a) return;
+          if (!confirm("¿Eliminar a " + a.nombre + " y todas sus notas?"))
+            return;
+          db.alumnos = db.alumnos.filter((x) => x.cedulaEscolar !== id);
+          db.notas = db.notas.filter((n) => n.estudianteId !== id);
+          guardarLocal();
+          borrarEntidad("alumnos", id);
+          render();
+        },
+
+        profesorNuevo: () => abrirModalProfesor(),
+        profesorEditar: (id) => abrirModalProfesor(id),
+        profesorBorrar: (id) => {
+          const p = getProfesor(id);
+          if (!p) return;
+          const n = alumnosPorProfesor(id).length;
+          if (
+            n &&
+            !confirm(
+              p.nombre +
+                " tiene " +
+                n +
+                " alumno(s). Al eliminarlo quedarán sin profesor asignado. ¿Continuar?",
+            )
+          )
+            return;
+          if (!confirm("¿Eliminar a " + p.nombre + "?")) return;
+          db.profesores = db.profesores.filter((x) => x.id !== id);
+          db.alumnos.forEach((a) => {
+            if (a.profesorId === id) a.profesorId = "";
+          });
+          guardarLocal();
+          borrarEntidad("profesores", id);
+          db.alumnos
+            .filter((a) => !a.profesorId)
+            .forEach((a) =>
+              encolar([{ op: "upsert", entity: "alumnos", row: a }]),
+            );
+          render();
+        },
+        profesorVerClave: (id) => {
+          clavesVisibles[id] = !clavesVisibles[id];
+          render();
+        },
+        profesorResetClave: (id) => {
+          const p = getProfesor(id);
+          if (!p) return;
+          const nueva = prompt("Nueva clave para " + p.nombre + ":");
+          if (nueva === null) return;
+          if (nueva.trim().length < 4)
+            return alert("La clave debe tener al menos 4 caracteres.");
+          p.clave = nueva.trim();
+          clavesVisibles[id] = true;
+          guardarEntidad("profesores", p);
+          render();
+        },
+
+        evalNueva: () => abrirModalEvaluacion(),
+        evalEditar: (id) => abrirModalEvaluacion(id),
+        evalBorrar: (id) => {
+          const ev = getEvaluacion(id);
+          if (!ev) return;
+          if (!confirm('¿Eliminar "' + ev.titulo + '" y sus notas?')) return;
+          db.evaluaciones = db.evaluaciones.filter((e) => e.id !== id);
+          db.notas = db.notas.filter((n) => n.evaluacionId !== id);
+          guardarLocal();
+          borrarEntidad("evaluaciones", id);
+          if (evalSeleccionada === id) evalSeleccionada = null;
+          render();
+        },
+        cargarNotas: (id) => {
+          evalSeleccionada = id;
+          render();
+        },
+        guardarNotas: () => guardarNotas(),
+        verAlumno: (id) => {
+          alumnoEnDetalle = id;
+          render();
+        },
+
+        probarConexion: () => probarConexion(),
+        subirTodo: () => subirTodo(),
+        vaciarHoja: () => vaciarHoja(),
+        cambiarClaveAdmin: () => {
+          document.getElementById("form-clave-admin").reset();
+          abrirModal("modal-clave-admin");
+        },
+
+        whatsappEnviar: () => whatsappEnviar(),
+        whatsappAbrir: (clave) => whatsappAbrirRepresentante(clave),
+        whatsappAbrirAlumno: (id) => whatsappAbrirAlumno(id),
+        whatsappTodos: (v) => marcarTodosRepresentantes(v === "si"),
+      };
+
+      document.addEventListener("click", function (ev) {
+        const btn = ev.target.closest("[data-accion]");
+        if (!btn) return;
+        ev.preventDefault();
+        const fn = ACCIONES[btn.dataset.accion];
+        if (fn) fn(decodeURIComponent(btn.dataset.arg || ""), btn);
+      });
+      document.addEventListener("change", function (ev) {
+        const el = ev.target.closest("[data-cambio]");
+        if (!el) return;
+        const fn = ACCIONES[el.dataset.cambio];
+        if (fn) fn(el.value, el);
+      });
+      document.addEventListener("keydown", function (ev) {
+        if (ev.key === "Escape") cerrarTodosModales();
+      });
+
+      function abrirModal(id) {
+        const m = document.getElementById(id);
+        m.classList.remove("hidden");
+        m.classList.add("flex");
+      }
+      function cerrarModal(id) {
+        const m = document.getElementById(id);
+        m.classList.add("hidden");
+        m.classList.remove("flex");
+      }
+      function cerrarTodosModales() {
+        [
+          "modal-alumno",
+          "modal-profesor",
+          "modal-evaluacion",
+          "modal-clave-admin",
+        ].forEach(cerrarModal);
+      }
+
+      /* =========================================================
+         ALUMNO
+      ========================================================= */
+      function abrirModalAlumno(id) {
+        document.getElementById("form-alumno").reset();
+        document.getElementById("alumno-id-orig").value = "";
+
+        const selGrado = document.getElementById("alumno-grado");
+        const selProf = document.getElementById("alumno-profesor");
+
+        const grados =
+          currentRole === "profesor" ? [currentUser.grado] : GRADOS_LIST;
+        selGrado.innerHTML = grados
+          .map((g) => '<option value="' + esc(g) + '">' + esc(g) + "</option>")
+          .join("");
+        selGrado.disabled = currentRole === "profesor";
+
+        const profs =
+          currentRole === "profesor"
+            ? db.profesores.filter((p) => p.id === currentUser.id)
+            : db.profesores;
+        selProf.innerHTML =
+          '<option value="">— Sin asignar —</option>' +
+          profs
+            .map(
+              (p) =>
+                '<option value="' +
+                esc(p.id) +
+                '">' +
+                esc(p.nombre) +
+                "</option>",
+            )
+            .join("");
+
+        if (id) {
+          const a = getAlumno(id);
+          if (!a) return;
+          document.getElementById("modal-alumno-title").innerText =
+            "Editar Alumno";
+          document.getElementById("alumno-id-orig").value = a.cedulaEscolar;
+          document.getElementById("alumno-nombre").value = a.nombre;
+          document.getElementById("alumno-cedula").value = a.cedulaEscolar;
+          selGrado.value = a.grado;
+          selProf.value = a.profesorId || "";
+          document.getElementById("alumno-rep").value = a.representante || "";
+          document.getElementById("alumno-repci").value = a.repCedula || "";
+          document.getElementById("alumno-telefono").value = a.telefono || "";
+          document.getElementById("alumno-pago").value = a.pago;
+        } else {
+          document.getElementById("modal-alumno-title").innerText =
+            currentRole === "profesor"
+              ? "Registrar Estudiante (Mi Aula)"
+              : "Inscribir Nuevo Alumno";
+          if (currentRole === "profesor") {
+            selProf.value = currentUser.id;
+          } else {
+            const p = db.profesores.find((x) => x.grado === selGrado.value);
+            if (p) selProf.value = p.id;
+          }
+        }
+        abrirModal("modal-alumno");
+      }
+
+      function guardarAlumno(ev) {
+        ev.preventDefault();
+        const idOrig = document.getElementById("alumno-id-orig").value;
+        const cedula = document.getElementById("alumno-cedula").value.trim();
+        if (!cedula) return alert("La cédula escolar es obligatoria.");
+
+        const existente = getAlumno(cedula);
+        if (existente && existente.cedulaEscolar !== idOrig)
+          return alert("Esa cédula escolar ya está registrada.");
+
+        const registro = {
+          cedulaEscolar: cedula,
+          nombre: document.getElementById("alumno-nombre").value.trim(),
+          grado: document.getElementById("alumno-grado").value,
+          profesorId: document.getElementById("alumno-profesor").value,
+          representante: document.getElementById("alumno-rep").value.trim(),
+          repCedula: document.getElementById("alumno-repci").value.trim(),
+          telefono: document.getElementById("alumno-telefono").value.trim(),
+          pago: document.getElementById("alumno-pago").value,
+        };
+        if (!registro.repCedula)
+          return alert(
+            "La cédula del representante es obligatoria: es la clave con la que ese padre entra al sistema.",
+          );
+        if (!registro.representante)
+          return alert("El nombre del representante es obligatorio.");
+
+        if (idOrig) {
+          const i = db.alumnos.findIndex((x) => x.cedulaEscolar === idOrig);
+          if (i < 0) return;
+          const anterior = db.alumnos[i];
+          db.alumnos[i] = Object.assign({}, anterior, registro);
+          guardarEntidad("alumnos", db.alumnos[i]);
+          if (anterior.cedulaEscolar !== cedula) {
+            db.notas.forEach((n) => {
+              if (n.estudianteId === anterior.cedulaEscolar) {
+                n.estudianteId = cedula;
+                encolar([{ op: "upsert", entity: "notas", row: n }]);
+              }
+            });
+            borrarEntidad("alumnos", anterior.cedulaEscolar);
+          }
+        } else {
+          db.alumnos.push(registro);
+          guardarEntidad("alumnos", registro);
+        }
+        guardarLocal();
+        cerrarModal("modal-alumno");
+        render();
+      }
+
+      /* =========================================================
+         PROFESOR
+      ========================================================= */
+      function abrirModalProfesor(id) {
+        document.getElementById("form-profesor").reset();
+        document.getElementById("profesor-id-orig").value = "";
+        document.getElementById("profesor-grado").innerHTML = GRADOS_LIST.map(
+          (g) => '<option value="' + esc(g) + '">' + esc(g) + "</option>",
+        ).join("");
+        document.getElementById("profesor-clave").value = "";
+        document.getElementById("profesor-activo").checked = true;
+
+        if (id) {
+          const p = getProfesor(id);
+          if (!p) return;
+          document.getElementById("modal-profesor-title").innerText =
+            "Editar Profesor(a)";
+          document.getElementById("profesor-id-orig").value = p.id;
+          document.getElementById("profesor-nombre").value = p.nombre;
+          document.getElementById("profesor-cedula").value = p.cedula;
+          document.getElementById("profesor-telefono").value = p.telefono || "";
+          document.getElementById("profesor-grado").value =
+            p.grado || GRADOS_LIST[0];
+          document.getElementById("profesor-clave").value = "";
+          document.getElementById("profesor-activo").checked =
+            p.activo !== false && p.activo !== "false";
+        } else {
+          document.getElementById("modal-profesor-title").innerText =
+            "Agregar Profesor(a)";
+        }
+        abrirModal("modal-profesor");
+      }
+
+      function guardarProfesor(ev) {
+        ev.preventDefault();
+        const idOrig = document.getElementById("profesor-id-orig").value;
+        const cedula = document.getElementById("profesor-cedula").value.trim();
+        const nombre = document.getElementById("profesor-nombre").value.trim();
+        const grado = document.getElementById("profesor-grado").value;
+        const clave = document.getElementById("profesor-clave").value.trim();
+
+        if (!cedula || !nombre)
+          return alert("La cédula y el nombre son obligatorios.");
+        const choque = db.profesores.find(
+          (p) => norm(p.cedula) === norm(cedula) && p.id !== idOrig,
+        );
+        if (choque) return alert("Ya existe un profesor con esa cédula.");
+
+        let registro;
+        if (idOrig) {
+          const p = getProfesor(idOrig);
+          if (!p) return;
+          registro = Object.assign({}, p);
+          registro.cedula = cedula;
+          registro.nombre = nombre;
+          registro.grado = grado;
+          registro.telefono = document
+            .getElementById("profesor-telefono")
+            .value.trim();
+          registro.activo = document.getElementById("profesor-activo").checked;
+          if (clave) registro.clave = clave;
+        } else {
+          const numericos = db.profesores
+            .map((p) => p.id)
+            .filter((x) => /^P\d+$/.test(x));
+          numericos.sort((a, b) => num(b.slice(1)) - num(a.slice(1)));
+          const siguiente = numericos.length
+            ? "P" + String(num(numericos[0].slice(1)) + 1).padStart(3, "0")
+            : "P001";
+          registro = {
+            id: siguiente,
+            cedula: cedula,
+            nombre: nombre,
+            clave: clave || String(Math.floor(1000 + Math.random() * 9000)),
+            telefono: document.getElementById("profesor-telefono").value.trim(),
+            grado: grado,
+            activo: document.getElementById("profesor-activo").checked,
+          };
+        }
+
+        if (idOrig) {
+          const i = db.profesores.findIndex((x) => x.id === idOrig);
+          db.profesores[i] = registro;
+        } else {
+          db.profesores.push(registro);
+          clavesVisibles[registro.id] = true;
+        }
+        guardarEntidad("profesores", registro);
+
+        if (registro.grado) {
+          db.alumnos.forEach((a) => {
+            if (a.grado === registro.grado && !a.profesorId) {
+              a.profesorId = registro.id;
+              encolar([{ op: "upsert", entity: "alumnos", row: a }]);
+            }
+          });
+        }
+        guardarLocal();
+        cerrarModal("modal-profesor");
+        render();
+      }
+
+      /* =========================================================
+         EVALUACIÓN / NOTAS
+      ========================================================= */
+      function abrirModalEvaluacion(id) {
+        document.getElementById("form-evaluacion").reset();
+        document.getElementById("evaluacion-id-orig").value = "";
+        document.getElementById("evaluacion-materia").innerHTML =
+          MATERIAS_PRIMARIA.map(
+            (m) => '<option value="' + esc(m) + '">' + esc(m) + "</option>",
+          ).join("");
+        document.getElementById("evaluacion-fecha").value = new Date()
+          .toISOString()
+          .split("T")[0];
+        document.getElementById("evaluacion-ponderacion").value = 100;
+        document.getElementById("evaluacion-notamax").value = 20;
+
+        if (id) {
+          const e = getEvaluacion(id);
+          if (!e) return;
+          document.getElementById("modal-evaluacion-title").innerText =
+            "Editar Actividad";
+          document.getElementById("evaluacion-id-orig").value = e.id;
+          document.getElementById("evaluacion-titulo").value = e.titulo;
+          document.getElementById("evaluacion-materia").value = e.materia;
+          document.getElementById("evaluacion-tipo").value = e.tipo;
+          document.getElementById("evaluacion-lapso").value = e.lapso;
+          document.getElementById("evaluacion-fecha").value = e.fecha || "";
+          document.getElementById("evaluacion-ponderacion").value =
+            e.ponderacion;
+          document.getElementById("evaluacion-notamax").value = e.notaMax;
+        } else {
+          document.getElementById("modal-evaluacion-title").innerText =
+            "Nueva Actividad";
+        }
+        abrirModal("modal-evaluacion");
+      }
+
+      function guardarEvaluacion(ev) {
+        ev.preventDefault();
+        if (currentRole !== "profesor")
+          return alert("Solo el profesor puede crear actividades.");
+        const idOrig = document.getElementById("evaluacion-id-orig").value;
+        const base = {
+          profesorId: currentUser.id,
+          grado: currentUser.grado,
+          titulo: document.getElementById("evaluacion-titulo").value.trim(),
+          materia: document.getElementById("evaluacion-materia").value,
+          tipo: document.getElementById("evaluacion-tipo").value,
+          lapso: document.getElementById("evaluacion-lapso").value,
+          fecha: document.getElementById("evaluacion-fecha").value,
+          ponderacion:
+            document.getElementById("evaluacion-ponderacion").value || "100",
+          notaMax: document.getElementById("evaluacion-notamax").value || "20",
+        };
+        let registro;
+        if (idOrig) {
+          const i = db.evaluaciones.findIndex((x) => x.id === idOrig);
+          if (i < 0) return;
+          registro = Object.assign({}, db.evaluaciones[i], base);
+          db.evaluaciones[i] = registro;
+        } else {
+          registro = Object.assign({ id: uid("EV") }, base);
+          db.evaluaciones.push(registro);
+        }
+        guardarEntidad("evaluaciones", registro);
+        cerrarModal("modal-evaluacion");
+        render();
+      }
+
+      function guardarNotas() {
+        if (!evalSeleccionada)
+          return alert("Selecciona una actividad antes de guardar.");
+        const ev = getEvaluacion(evalSeleccionada);
+        if (!ev) return;
+        const ops = [];
+        document.querySelectorAll(".nota-input").forEach((inp) => {
+          const estId = inp.dataset.est;
+          const bruto = inp.value.trim();
+          const i = db.notas.findIndex(
+            (n) => n.evaluacionId === ev.id && n.estudianteId === estId,
+          );
+          if (bruto === "") {
+            if (i >= 0) {
+              db.notas.splice(i, 1);
+              ops.push({
+                op: "borrar",
+                entity: "notas",
+                id: ev.id + "|" + estId,
+              });
+            }
+            return;
+          }
+          const max = num(ev.notaMax) || 20;
+          const valor = Math.max(0, Math.min(parseFloat(bruto), max));
+          if (isNaN(valor)) return;
+          const registro = {
+            evaluacionId: ev.id,
+            estudianteId: estId,
+            nota: valor,
+          };
+          if (i >= 0) db.notas[i] = registro;
+          else db.notas.push(registro);
+          ops.push({ op: "upsert", entity: "notas", row: registro });
+        });
+        guardarLocal();
+        encolar(ops);
+        render();
+      }
+
+      function guardarClaveAdmin(ev) {
+        ev.preventDefault();
+        const a = document.getElementById("admin-clave-nueva").value;
+        const b = document.getElementById("admin-clave-repetir").value;
+        if (a.length < 4) return alert("Mínimo 4 caracteres.");
+        if (a !== b) return alert("Las contraseñas no coinciden.");
+        const u = db.usuarios.find((x) => x.rol === "admin");
+        if (!u) return;
+        u.clave = a;
+        guardarEntidad("usuarios", u);
+        cerrarModal("modal-clave-admin");
+        render();
+      }
+
+      /* =========================================================
+         WHATSAPP: RECORDATORIOS A REPRESENTANTES
+      ========================================================= */
+      function actualizarMensajeWA(v) {
+        waMensaje = v;
+      }
+      function marcarRepresentante(clave, marcado) {
+        waSeleccion[clave] = !!marcado;
+      }
+      function marcarTodosRepresentantes(marcado) {
+        representantes().forEach((r) => {
+          waSeleccion[r.clave] = !!marcado;
+        });
+        render();
+      }
+      function usarPlantillaWhatsApp(id) {
+        const p = PLANTILLAS_WA.find((x) => x.id === id);
+        if (!p) return;
+        waMensaje = p.texto;
+        const ta = document.getElementById("wa-mensaje");
+        if (ta) ta.value = waMensaje;
+        document.querySelectorAll("[data-plantilla]").forEach((b) => {
+          const activo = b.dataset.plantilla === id;
+          b.classList.toggle("ring-2", activo);
+          b.classList.toggle("ring-brand-500", activo);
+          b.classList.toggle("border-brand-300", activo);
+        });
+      }
+      function whatsappEnviar() {
+        const ta = document.getElementById("wa-mensaje");
+        if (ta) waMensaje = ta.value;
+        const reps = representantes().filter(
+          (r) => waSeleccion[r.clave] !== false,
+        );
+        if (!reps.length)
+          return alert("Selecciona al menos un representante.");
+        const sinTelefono = reps.filter((r) => !telefonoWhatsApp(r.telefono));
+        if (
+          sinTelefono.length &&
+          !confirm(
+            sinTelefono.length +
+              " representante(s) no tienen teléfono registrado y serán omitidos. ¿Continuar?",
+          )
+        )
+          return;
+        waResultado = reps
+          .map((r) => ({
+            nombre: r.nombre,
+            cedula: r.cedula,
+            telefono: r.telefono,
+            url: enlaceWhatsApp(r.telefono, aplicarPlantilla(waMensaje, r)),
+          }))
+          .filter((x) => x.url);
+        if (!waResultado.length)
+          return alert(
+            "Ninguno de los representantes seleccionados tiene teléfono registrado.",
+          );
+        if (waResultado.length === 1)
+          window.open(waResultado[0].url, "_blank");
+        render();
+      }
+      function whatsappAbrirRepresentante(clave) {
+        const ta = document.getElementById("wa-mensaje");
+        if (ta) waMensaje = ta.value;
+        const rep = representantes().find((r) => r.clave === clave);
+        if (!rep) return;
+        abrirWhatsApp(rep.telefono, aplicarPlantilla(waMensaje, rep));
+      }
+      function whatsappAbrirAlumno(id) {
+        const a = getAlumno(id);
+        if (!a) return;
+        const rep = {
+          nombre: a.representante || "",
+          cedula: a.repCedula || "",
+          hijos: [a],
+        };
+        abrirWhatsApp(a.telefono, aplicarPlantilla(waMensaje, rep));
+      }
+
+      function vistaWhatsApp() {
+        const reps = representantes();
+        const seleccionados = reps.filter(
+          (r) => waSeleccion[r.clave] !== false,
+        ).length;
+
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">' +
+          '<div class="flex items-center gap-3">' +
+          '<span class="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-brands fa-whatsapp"></i></span>' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Recordatorios por WhatsApp</h3>' +
+          '<p class="text-xs text-slate-500 mt-1">' +
+          NOMBRE_ESCUELA +
+          " • " +
+          reps.length +
+          " representante(s) registrado(s)</p></div></div>" +
+          '<button data-accion="whatsappEnviar" class="btn-pri text-sm flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/25"><i class="fa-brands fa-whatsapp"></i> Enviar a seleccionados</button></div>';
+
+        if (!reps.length) {
+          html +=
+            '<div class="card p-8 text-center text-slate-400 text-sm">Todavía no hay representantes. Inscribe alumnos en <strong>Matrícula Alumnos</strong> para poder enviarles recordatorios.</div></section>';
+          return html;
+        }
+
+        html +=
+          '<div class="grid lg:grid-cols-2 gap-5">' +
+          '<div class="card p-5 space-y-4"><div><h4 class="font-bold text-slate-800">Mensaje</h4>' +
+          '<p class="text-xs text-slate-500 mt-0.5">Elige una plantilla o escribe tu propio mensaje.</p></div>' +
+          '<div class="flex flex-wrap gap-2">' +
+          PLANTILLAS_WA.map(
+            (p) =>
+              '<button type="button" data-plantilla="' +
+              esc(p.id) +
+              '" onclick="usarPlantillaWhatsApp(' +
+              "'" +
+              esc(p.id) +
+              "'" +
+              ')" class="border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 flex items-center gap-1.5 transition"><i class="fa-solid ' +
+              p.ico +
+              ' text-emerald-500"></i> ' +
+              esc(p.titulo) +
+              "</button>",
+          ).join("") +
+          "</div>" +
+          '<textarea id="wa-mensaje" rows="7" class="input resize-y" oninput="actualizarMensajeWA(this.value)">' +
+          esc(waMensaje) +
+          "</textarea>" +
+          '<p class="text-[11px] text-slate-400 leading-relaxed"><i class="fa-solid fa-wand-magic-sparkles text-brand-500 mr-1"></i>Puedes usar <code class="bg-slate-100 px-1 rounded">{representante}</code>, <code class="bg-slate-100 px-1 rounded">{alumno}</code>, <code class="bg-slate-100 px-1 rounded">{grado}</code> y <code class="bg-slate-100 px-1 rounded">{cedula}</code>; se reemplazan por los datos de cada representante.</p></div>';
+
+        html +=
+          '<div class="card overflow-hidden"><div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-3 flex-wrap">' +
+          '<div><h4 class="font-bold text-slate-800">Destinatarios</h4>' +
+          '<p class="text-xs text-slate-500 mt-0.5">' +
+          seleccionados +
+          " de " +
+          reps.length +
+          " seleccionado(s)</p></div>" +
+          '<div class="flex items-center gap-2">' +
+          '<button data-accion="whatsappTodos" data-arg="si" class="text-xs font-semibold text-brand-600 hover:text-brand-700">Todos</button>' +
+          '<span class="text-slate-300">|</span>' +
+          '<button data-accion="whatsappTodos" data-arg="no" class="text-xs font-semibold text-slate-500 hover:text-slate-700">Ninguno</button>' +
+          "</div></div>" +
+          '<div class="max-h-96 overflow-y-auto custom-scrollbar divide-y divide-slate-100">' +
+          reps
+            .map((r) => {
+              const marcado = waSeleccion[r.clave] !== false;
+              const tel = telefonoWhatsApp(r.telefono);
+              const pendiente = r.hijos.some((h) => h.pago !== "Solvente");
+              return (
+                '<div class="px-5 py-3 flex items-center gap-3">' +
+                '<input type="checkbox" ' +
+                (marcado ? "checked " : "") +
+                'onchange="marcarRepresentante(\'' +
+                r.clave +
+                "', this.checked)\" class=\"w-4 h-4 rounded border-slate-300 text-emerald-600\" />" +
+                '<span class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xs flex-shrink-0">' +
+                iniciales(r.nombre) +
+                "</span>" +
+                '<div class="flex-1 min-w-0"><p class="font-semibold text-slate-700 truncate">' +
+                esc(r.nombre) +
+                '</p><p class="text-[11px] text-slate-400">' +
+                esc(r.cedula || "-") +
+                " • " +
+                r.hijos.length +
+                " hijo(s)" +
+                (tel ? "" : ' • <span class="text-rose-500">sin teléfono</span>') +
+                "</p></div>" +
+                (pendiente
+                  ? '<span class="badge bg-amber-50 text-amber-700 flex-shrink-0">Pago pendiente</span>'
+                  : '<span class="badge bg-emerald-50 text-emerald-700 flex-shrink-0">Solvente</span>') +
+                '<button data-accion="whatsappAbrir" data-arg="' +
+                attr(r.clave) +
+                '" title="Abrir chat" class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 flex-shrink-0"><i class="fa-brands fa-whatsapp"></i></button>' +
+                "</div>"
+              );
+            })
+            .join("") +
+          "</div></div></div>";
+
+        if (waResultado.length) {
+          html +=
+            '<div class="card p-5"><div class="flex items-center gap-2 mb-3"><i class="fa-solid fa-link text-emerald-500"></i><h4 class="font-bold text-slate-800">Enlaces listos (' +
+            waResultado.length +
+            ")</h4></div>" +
+            '<p class="text-xs text-slate-500 mb-3">Si el navegador bloqueó la apertura múltiple, pulsa cada enlace para abrir el chat.</p>' +
+            '<div class="grid sm:grid-cols-2 gap-2">' +
+            waResultado
+              .map(
+                (w) =>
+                  '<a href="' +
+                  esc(w.url) +
+                  '" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 px-3 py-2 rounded-xl border border-slate-200 hover:bg-emerald-50 text-sm"><span class="truncate"><i class="fa-brands fa-whatsapp text-emerald-500 mr-1.5"></i>' +
+                  esc(w.nombre) +
+                  '</span><span class="text-[11px] text-slate-400 flex-shrink-0">+' +
+                  esc(w.telefono || "-") +
+                  "</span></a>",
+              )
+              .join("") +
+            "</div></div>";
+        }
+
+        html +=
+          '<p class="text-xs text-slate-400 flex items-start gap-1.5"><i class="fa-solid fa-circle-info mt-0.5"></i><span>Los mensajes se abren en WhatsApp Web o en la aplicación con el chat del representante ya listo. Los teléfonos locales (por ejemplo 0414...) se convierten automáticamente al formato internacional.</span></p>' +
+          "</section>";
+        return html;
+      }
+
+      /* =========================================================
+         VISTAS: ADMIN
+      ========================================================= */
+      function vistaAdmin(t) {
+        if (t === "dashboard") return vistaDashboard();
+        if (t === "alumnos") return vistaAlumnos();
+        if (t === "profesores") return vistaProfesores();
+        if (t === "notas") return vistaNotasAdmin();
+        if (t === "whatsapp") return vistaWhatsApp();
+        if (t === "config") return vistaConfig();
+        return "";
+      }
+
+      function vistaDashboard() {
+        const activos = db.profesores.filter(
+          (p) => p.activo !== false && p.activo !== "false",
+        ).length;
+        const pendientes = db.alumnos.filter(
+          (a) => a.pago !== "Solvente",
+        ).length;
+        const reps = new Set(db.alumnos.map((a) => a.repCedula).filter(Boolean))
+          .size;
+        const recientes = db.evaluaciones
+          .slice()
+          .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)))
+          .slice(0, 6);
+
+        const tarjetas = [
+          {
+            t: "Alumnos matriculados",
+            v: db.alumnos.length,
+            i: "fa-children",
+            c: "text-brand-600 bg-brand-50",
+          },
+          {
+            t: "Profesores activos",
+            v: activos,
+            i: "fa-chalkboard-user",
+            c: "text-indigo-600 bg-indigo-50",
+          },
+          {
+            t: "Actividades creadas",
+            v: db.evaluaciones.length,
+            i: "fa-clipboard-list",
+            c: "text-amber-600 bg-amber-50",
+          },
+          {
+            t: "Representantes",
+            v: reps,
+            i: "fa-user-group",
+            c: "text-emerald-600 bg-emerald-50",
+          },
+        ];
+
+        return (
+          '<section class="space-y-6">' +
+          '<div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">' +
+          tarjetas
+            .map(
+              (k) =>
+                '<div class="card p-5"><div class="flex items-center justify-between"><div><p class="text-[11px] text-slate-500 font-bold uppercase tracking-wider">' +
+                esc(k.t) +
+                '</p><p class="text-3xl font-bold font-heading text-slate-800 mt-1">' +
+                k.v +
+                '</p></div><div class="w-11 h-11 rounded-xl ' +
+                k.c +
+                ' flex items-center justify-center"><i class="fa-solid ' +
+                k.i +
+                '"></i></div></div></div>',
+            )
+            .join("") +
+          "</div>" +
+          '<div class="grid lg:grid-cols-3 gap-6">' +
+          '<div class="card lg:col-span-2 overflow-hidden">' +
+          '<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between"><h3 class="font-bold text-slate-800">Actividades registradas</h3>' +
+          '<a href="#" data-accion="tab" data-arg="notas" class="text-xs text-brand-600 font-semibold">Ver notas <i class="fa-solid fa-arrow-right ml-1"></i></a></div>' +
+          '<div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr><th class="th">Actividad</th><th class="th">Materia</th><th class="th">Lapso</th><th class="th">Fecha</th></tr></thead><tbody class="divide-y divide-slate-100 text-sm">' +
+          (recientes.length
+            ? recientes
+                .map(
+                  (e) =>
+                    '<tr><td class="td font-medium">' +
+                    esc(e.titulo) +
+                    '</td><td class="td">' +
+                    esc(e.materia) +
+                    '</td><td class="td">Lapso ' +
+                    esc(e.lapso) +
+                    '</td><td class="td text-slate-500">' +
+                    fechar(e.fecha) +
+                    "</td></tr>",
+                )
+                .join("")
+            : filaVacia("Todavía no hay actividades.", 4)) +
+          "</tbody></table></div></div>" +
+          '<div class="card p-5 space-y-4"><h3 class="font-bold text-slate-800">Accesos del sistema</h3><div class="space-y-2 text-sm">' +
+          '<div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50"><i class="fa-solid fa-user-shield text-brand-600 w-5"></i><div class="flex-1"><p class="font-semibold text-slate-700">Administrador</p><p class="text-xs text-slate-500">Usuario + contraseña</p></div><a href="#" data-accion="tab" data-arg="config" class="text-xs text-brand-600 font-semibold">Configurar</a></div>' +
+          '<div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50"><i class="fa-solid fa-chalkboard-user text-indigo-600 w-5"></i><div class="flex-1"><p class="font-semibold text-slate-700">Profesores</p><p class="text-xs text-slate-500">Cédula + clave que tú asignas</p></div><a href="#" data-accion="tab" data-arg="profesores" class="text-xs text-brand-600 font-semibold">Gestionar</a></div>' +
+          '<div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50"><i class="fa-solid fa-user-group text-emerald-600 w-5"></i><div class="flex-1"><p class="font-semibold text-slate-700">Representantes</p><p class="text-xs text-slate-500">Su cédula es la clave</p></div><a href="#" data-accion="tab" data-arg="alumnos" class="text-xs text-brand-600 font-semibold">Alumnos</a></div>' +
+          "</div>" +
+          (pendientes
+            ? '<div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-xs text-amber-800 flex items-center justify-between gap-3 flex-wrap"><span><i class="fa-solid fa-triangle-exclamation mr-1.5"></i>' +
+              pendientes +
+              ' alumno(s) con estatus de pago pendiente.</span><a href="#" data-accion="tab" data-arg="whatsapp" class="font-semibold text-amber-900 underline whitespace-nowrap"><i class="fa-brands fa-whatsapp mr-1"></i>Enviar recordatorios</a></div>'
+            : "") +
+          "</div></div></section>"
+        );
+      }
+
+      function vistaAlumnos() {
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Matrícula de Alumnos</h3><p class="text-xs text-slate-500 mt-1">' +
+          db.alumnos.length +
+          " alumno(s) registrado(s)</p></div>" +
+          '<button data-accion="alumnoNuevo" class="btn-pri text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus"></i> Inscribir Alumno</button></div>' +
+          '<div class="card overflow-hidden"><div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr>' +
+          '<th class="th">Cédula Escolar</th><th class="th">Alumno</th><th class="th">Grado</th><th class="th">Profesor(a)</th>' +
+          '<th class="th">Representante</th><th class="th">Cédula Rep.</th><th class="th">WhatsApp</th><th class="th">Pago</th><th class="th text-right">Acciones</th>' +
+          '</tr></thead><tbody class="divide-y divide-slate-100 text-sm">';
+
+        if (!db.alumnos.length) {
+          html += filaVacia("No hay alumnos registrados.", 9);
+        } else {
+          db.alumnos
+            .slice()
+            .sort(
+              (a, b) =>
+                a.grado.localeCompare(b.grado) ||
+                a.nombre.localeCompare(b.nombre),
+            )
+            .forEach((a) => {
+              const p = getProfesor(a.profesorId);
+              html +=
+                "<tr>" +
+                '<td class="td font-medium text-slate-700">' +
+                esc(a.cedulaEscolar) +
+                "</td>" +
+                '<td class="td font-semibold">' +
+                esc(a.nombre) +
+                "</td>" +
+                '<td class="td">' +
+                esc(a.grado) +
+                "</td>" +
+                '<td class="td text-slate-600">' +
+                (p
+                  ? esc(p.nombre)
+                  : '<span class="text-amber-600 text-xs">Sin asignar</span>') +
+                "</td>" +
+                '<td class="td">' +
+                esc(a.representante) +
+                "</td>" +
+                '<td class="td"><span class="badge bg-slate-100 text-slate-600">' +
+                esc(a.repCedula || "-") +
+                "</span></td>" +
+                '<td class="td text-slate-500">+' +
+                esc(a.telefono) +
+                "</td>" +
+                '<td class="td">' +
+                badgePago(a.pago) +
+                "</td>" +
+                '<td class="td"><div class="flex items-center justify-end gap-1.5">' +
+                '<button data-accion="whatsappAbrirAlumno" data-arg="' +
+                attr(a.cedulaEscolar) +
+                '" title="Recordatorio por WhatsApp" class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100"><i class="fa-brands fa-whatsapp"></i></button>' +
+                '<button data-accion="alumnoEditar" data-arg="' +
+                attr(a.cedulaEscolar) +
+                '" title="Editar" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-pen"></i></button>' +
+                '<button data-accion="alumnoBorrar" data-arg="' +
+                attr(a.cedulaEscolar) +
+                '" title="Eliminar" class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"><i class="fa-solid fa-trash-can"></i></button>' +
+                "</div></td></tr>";
+            });
+        }
+
+        html +=
+          "</tbody></table></div></div>" +
+          '<p class="text-xs text-slate-400 flex items-start gap-1.5"><i class="fa-solid fa-circle-info mt-0.5"></i><span>La cédula del representante es la clave con la que ese padre entra al sistema a ver las notas de sus hijos.</span></p>' +
+          "</section>";
+        return html;
+      }
+
+      function vistaProfesores() {
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Profesores y Claves</h3><p class="text-xs text-slate-500 mt-1">' +
+          db.profesores.length +
+          " profesor(es) • el profesor entra con su cédula y la clave que definas aquí</p></div>" +
+          '<button data-accion="profesorNuevo" class="btn-pri text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus"></i> Agregar Profesor</button></div>' +
+          '<div class="card overflow-hidden"><div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr>' +
+          '<th class="th">Profesor(a)</th><th class="th">Cédula</th><th class="th">Grado</th><th class="th">Alumnos</th>' +
+          '<th class="th">Clave de acceso</th><th class="th">Estado</th><th class="th text-right">Acciones</th>' +
+          '</tr></thead><tbody class="divide-y divide-slate-100 text-sm">';
+
+        if (!db.profesores.length) {
+          html += filaVacia("No hay profesores registrados.", 7);
+        } else {
+          db.profesores.forEach((p) => {
+            const n = alumnosPorProfesor(p.id).length;
+            const visible = clavesVisibles[p.id];
+            const inactivo = p.activo === false || p.activo === "false";
+            html +=
+              "<tr>" +
+              '<td class="td"><div class="flex items-center gap-3">' +
+              '<span class="w-9 h-9 rounded-full bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold text-xs">' +
+              iniciales(p.nombre) +
+              "</span>" +
+              '<div><p class="font-semibold text-slate-700">' +
+              esc(p.nombre) +
+              '</p><p class="text-[11px] text-slate-400">' +
+              esc(p.telefono || "-") +
+              "</p></div></div></td>" +
+              '<td class="td font-medium">' +
+              esc(p.cedula) +
+              "</td>" +
+              '<td class="td">' +
+              esc(p.grado || "-") +
+              "</td>" +
+              '<td class="td"><span class="badge bg-slate-100 text-slate-600">' +
+              n +
+              "</span></td>" +
+              '<td class="td"><div class="flex items-center gap-2">' +
+              '<code class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs tracking-wider">' +
+              (visible ? esc(p.clave) : "••••••") +
+              "</code>" +
+              '<button data-accion="profesorVerClave" data-arg="' +
+              attr(p.id) +
+              '" class="text-xs text-slate-400 hover:text-slate-600" title="' +
+              (visible ? "Ocultar" : "Ver") +
+              ' clave"><i class="fa-solid ' +
+              (visible ? "fa-eye-slash" : "fa-eye") +
+              '"></i></button></div></td>' +
+              '<td class="td">' +
+              (inactivo
+                ? '<span class="badge bg-slate-200 text-slate-600">Inactivo</span>'
+                : '<span class="badge bg-emerald-50 text-emerald-700">Activo</span>') +
+              "</td>" +
+              '<td class="td"><div class="flex items-center justify-end gap-1.5">' +
+              '<button data-accion="profesorResetClave" data-arg="' +
+              attr(p.id) +
+              '" title="Cambiar clave" class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100"><i class="fa-solid fa-key"></i></button>' +
+              '<button data-accion="profesorEditar" data-arg="' +
+              attr(p.id) +
+              '" title="Editar" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-pen"></i></button>' +
+              '<button data-accion="profesorBorrar" data-arg="' +
+              attr(p.id) +
+              '" title="Eliminar" class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"><i class="fa-solid fa-trash-can"></i></button>' +
+              "</div></td></tr>";
+          });
+        }
+
+        html +=
+          "</tbody></table></div></div>" +
+          '<div class="card p-5"><h4 class="font-bold text-slate-800 mb-3"><i class="fa-solid fa-circle-info text-brand-500 mr-1.5"></i>Cómo acceden los profesores</h4><div class="grid sm:grid-cols-3 gap-3 text-sm">' +
+          '<div class="p-3 rounded-xl bg-slate-50"><p class="font-semibold text-slate-700">1. Cédula</p><p class="text-xs text-slate-500 mt-1">La que registras en el formulario, con o sin guiones.</p></div>' +
+          '<div class="p-3 rounded-xl bg-slate-50"><p class="font-semibold text-slate-700">2. Clave</p><p class="text-xs text-slate-500 mt-1">La defines tú. Si la dejas vacía al crear, se genera una.</p></div>' +
+          '<div class="p-3 rounded-xl bg-slate-50"><p class="font-semibold text-slate-700">3. Cambio</p><p class="text-xs text-slate-500 mt-1">Con el botón <i class="fa-solid fa-key text-amber-500"></i> cambias la clave cuando quieras.</p></div>' +
+          "</div></div></section>";
+        return html;
+      }
+
+      function vistaNotasAdmin() {
+        const grados = Array.from(
+          new Set(db.alumnos.map((a) => a.grado)),
+        ).sort();
+        const lista =
+          filtroGradoAdmin === "todos"
+            ? db.alumnos
+            : alumnosPorGrado(filtroGradoAdmin);
+
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Notas y Actividades</h3><p class="text-xs text-slate-500 mt-1">Vista general de toda la institución</p></div>' +
+          '<select data-cambio="filtrarGradoAdmin" class="input sm:w-64"><option value="todos"' +
+          (filtroGradoAdmin === "todos" ? " selected" : "") +
+          ">Todos los grados</option>" +
+          grados
+            .map(
+              (g) =>
+                '<option value="' +
+                esc(g) +
+                '"' +
+                (filtroGradoAdmin === g ? " selected" : "") +
+                ">" +
+                esc(g) +
+                "</option>",
+            )
+            .join("") +
+          "</select></div>" +
+          '<div class="card overflow-hidden"><div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr>' +
+          '<th class="th">Alumno</th><th class="th">Cédula</th><th class="th">Grado</th><th class="th">Representante</th>' +
+          '<th class="th text-center">Actividades</th><th class="th text-center">Calificadas</th><th class="th text-center">Promedio</th>' +
+          '<th class="th">Desempeño</th><th class="th text-right">Detalle</th>' +
+          '</tr></thead><tbody class="divide-y divide-slate-100 text-sm">';
+
+        if (!lista.length) {
+          html += filaVacia("No hay alumnos para este filtro.", 9);
+        } else {
+          lista
+            .slice()
+            .sort((a, b) => a.nombre.localeCompare(b.nombre))
+            .forEach((a) => {
+              const r = resumenAlumno(a.cedulaEscolar);
+              const prom = r.promedio;
+              const col =
+                prom === null
+                  ? "bg-slate-100 text-slate-500"
+                  : prom >= NOTA_APROBACION
+                    ? "bg-emerald-50 text-emerald-700"
+                    : "bg-rose-50 text-rose-700";
+              html +=
+                "<tr>" +
+                '<td class="td font-semibold">' +
+                esc(a.nombre) +
+                "</td>" +
+                '<td class="td text-slate-500">' +
+                esc(a.cedulaEscolar) +
+                "</td>" +
+                '<td class="td">' +
+                esc(a.grado) +
+                "</td>" +
+                '<td class="td">' +
+                esc(a.representante) +
+                '<p class="text-[11px] text-slate-400">' +
+                esc(a.repCedula || "-") +
+                "</p></td>" +
+                '<td class="td text-center">' +
+                r.actividades +
+                "</td>" +
+                '<td class="td text-center">' +
+                r.calificadas +
+                "</td>" +
+                '<td class="td text-center font-semibold">' +
+                (prom === null ? "-" : prom.toFixed(1) + "%") +
+                "</td>" +
+                '<td class="td"><span class="badge ' +
+                col +
+                '">' +
+                (prom === null
+                  ? "Sin notas"
+                  : prom >= NOTA_APROBACION
+                    ? "Aprobado"
+                    : "En riesgo") +
+                "</span></td>" +
+                '<td class="td text-right"><button data-accion="verAlumno" data-arg="' +
+                attr(a.cedulaEscolar) +
+                '" class="text-xs font-semibold text-brand-600 hover:text-brand-700">Ver <i class="fa-solid fa-arrow-right ml-1"></i></button></td></tr>';
+            });
+        }
+
+        html += "</tbody></table></div></div></section>";
+        return html;
+      }
+
+      function vistaConfig() {
+        const admin = db.usuarios.find((u) => u.rol === "admin") || {};
+        const insignias = {
+          conectado:
+            '<span class="badge bg-emerald-50 text-emerald-700">Conectado</span>',
+          sincronizando:
+            '<span class="badge bg-amber-50 text-amber-700">Sincronizando</span>',
+          error:
+            '<span class="badge bg-rose-50 text-rose-700">Error de conexión</span>',
+          local:
+            '<span class="badge bg-slate-100 text-slate-600">Modo local</span>',
+        };
+        const resumen = [
+          ["Alumnos", db.alumnos.length],
+          ["Profesores", db.profesores.length],
+          ["Actividades", db.evaluaciones.length],
+          ["Notas registradas", db.notas.length],
+          [
+            "Representantes",
+            new Set(db.alumnos.map((a) => a.repCedula).filter(Boolean)).size,
+          ],
+        ];
+
+        return (
+          '<section class="space-y-6">' +
+          '<div class="card p-6"><div class="flex items-start justify-between gap-4 flex-wrap">' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Conexión con Google Sheets</h3>' +
+          '<p class="text-xs text-slate-500 mt-1">Alumnos, profesores, claves, actividades y notas se guardan en una hoja compartida.</p></div>' +
+          (insignias[estadoSync] || insignias.local) +
+          "</div>" +
+          '<div class="mt-5 grid md:grid-cols-[1fr_auto] gap-3 items-end"><div>' +
+          '<label class="block text-xs font-semibold text-slate-600 mb-1.5">URL del Web App de Apps Script</label>' +
+          '<input type="url" id="input-url-hoja" placeholder="https://script.google.com/macros/s/AKfycb.../exec" class="input" />' +
+          '<p class="text-[11px] text-slate-400 mt-1.5">Debe terminar en <code class="bg-slate-100 px-1 rounded">/exec</code>. Ver <code class="bg-slate-100 px-1 rounded">apps-script/INSTALACION.md</code>.</p></div>' +
+          '<button data-accion="probarConexion" class="btn-pri text-sm py-3"><i class="fa-solid fa-plug-circle-check mr-1.5"></i> Conectar y probar</button></div>' +
+          '<div class="mt-5 flex flex-wrap gap-2">' +
+          '<button data-accion="subirTodo" class="btn-sec text-sm flex items-center gap-2"><i class="fa-solid fa-cloud-arrow-up text-brand-600"></i> Subir datos actuales a la hoja</button>' +
+          '<button data-accion="vaciarHoja" class="btn-sec text-sm flex items-center gap-2 text-rose-600"><i class="fa-solid fa-trash-can"></i> Vaciar la hoja</button></div>' +
+          '<p class="text-[11px] text-slate-400 mt-3 leading-relaxed">Sin conexión la aplicación sigue funcionando con los datos guardados en este navegador. <strong>Subir datos actuales</strong> reemplaza todo el contenido de las hojas con lo que tienes aquí, incluyendo las claves de los profesores.</p></div>' +
+          '<div class="grid md:grid-cols-2 gap-6">' +
+          '<div class="card p-6"><h4 class="font-bold text-slate-800 mb-1">Contraseña del administrador</h4>' +
+          '<p class="text-xs text-slate-500 mb-4">Usuario actual: <strong class="text-slate-700">' +
+          esc(admin.usuario || "admin") +
+          '</strong></p><button data-accion="cambiarClaveAdmin" class="btn-sec text-sm flex items-center gap-2"><i class="fa-solid fa-key text-amber-500"></i> Cambiar contraseña</button></div>' +
+          '<div class="card p-6"><h4 class="font-bold text-slate-800 mb-4">Resumen de la base de datos</h4><div class="space-y-2 text-sm">' +
+          resumen
+            .map(
+              (k) =>
+                '<div class="flex items-center justify-between py-1.5 border-b border-slate-100 last:border-0"><span class="text-slate-600">' +
+                esc(k[0]) +
+                '</span><span class="font-bold text-slate-800">' +
+                k[1] +
+                "</span></div>",
+            )
+            .join("") +
+          "</div></div></div>" +
+          '<div class="card p-6"><h4 class="font-bold text-slate-800 mb-3">Accesos y niveles de permiso</h4><div class="overflow-x-auto"><table class="w-full border-collapse text-sm"><thead><tr><th class="th">Rol</th><th class="th">Inicia sesión con</th><th class="th">Puede ver</th><th class="th">Puede hacer</th></tr></thead><tbody class="divide-y divide-slate-100">' +
+          '<tr><td class="td font-semibold">Administrador</td><td class="td">Usuario + contraseña</td><td class="td">Todos los grados y notas</td><td class="td">Alumnos, profesores, claves, configuración</td></tr>' +
+          '<tr><td class="td font-semibold">Profesor(a)</td><td class="td">Cédula + clave asignada</td><td class="td">Solo sus alumnos</td><td class="td">Crear actividades y cargar notas</td></tr>' +
+          '<tr><td class="td font-semibold">Representante</td><td class="td">Su cédula</td><td class="td">Solo sus hijos representados</td><td class="td">Consultar notas y actividades</td></tr>' +
+          "</tbody></table></div></div></section>"
+        );
+      }
+
+      function restaurarInputUrl() {
+        const inp = document.getElementById("input-url-hoja");
+        if (inp && urlHoja) inp.value = urlHoja;
+      }
+
+      /* =========================================================
+         CONFIGURACIÓN: GOOGLE SHEETS
+      ========================================================= */
+      async function probarConexion() {
+        const inp = document.getElementById("input-url-hoja");
+        const url = (inp && inp.value.trim()) || "";
+        if (!url) {
+          alert("Pega la URL del Web App de Apps Script.");
+          return;
+        }
+        if (!/\/exec(\?|$)/.test(url)) {
+          if (
+            !confirm(
+              "Esa URL no termina en /exec. ¿Continuar igual?\n\nLa URL /dev solo funciona con tu cuenta de Google abierta.",
+            )
+          )
+            return;
+        }
+        urlHoja = url;
+        try {
+          localStorage.setItem(LS_URL, urlHoja);
+        } catch (e) {}
+        marcarSync("sincronizando", "Conectando...");
+        const exito = await sincronizar();
+        if (!exito) {
+          marcarSync("error");
+          alert("No se pudo conectar.\n\n" + explicarError(ultimoErrorSync));
+          return;
+        }
+        render();
+        alert(
+          estadoSync === "conectado"
+            ? "Conexión correcta. Datos cargados desde Google Sheets."
+            : "Conexión correcta."
+        );
+      }
+
+      function explicarError(msg) {
+        const m = String(msg || "Error desconocido");
+        if (/403|401|no es público/.test(m)) {
+          return (
+            "El Web App de Apps Script no está publicado para todo el público.\n\n" +
+            "Solución:\n" +
+            "1. Abre Apps Script > Implementar > Nueva implementación\n" +
+            "2. Tipo: Aplicación web\n" +
+            "3. Ejecutar como: Yo\n" +
+            "4. Quién tiene acceso: Cualquiera\n" +
+            "5. Copia la nueva URL /exec en Configuración"
+          );
+        }
+        return m;
+      }
+
+      async function subirTodo() {
+        if (!urlHoja) return alert("Primero conecta la URL de Google Sheets.");
+        const total =
+          db.alumnos.length +
+          db.profesores.length +
+          db.evaluaciones.length +
+          db.notas.length;
+        if (
+          !confirm(
+            "Se enviarán " +
+              total +
+              " registros a la hoja, incluyendo las claves de los profesores. ¿Continuar?",
+          )
+        )
+          return;
+        marcarSync("sincronizando", "Subiendo datos...");
+        try {
+          await llamarHoja({
+            op: "sembrar",
+            data: {
+              alumnos: db.alumnos,
+              profesores: db.profesores,
+              evaluaciones: db.evaluaciones,
+              notas: db.notas,
+              usuarios: db.usuarios,
+            },
+          });
+          marcarSync("conectado");
+          alert("Datos enviados a Google Sheets.");
+        } catch (e) {
+          ultimoErrorSync = e.message || String(e);
+          marcarSync("error");
+          alert("No se pudo subir: " + explicarError(e.message));
+        }
+      }
+
+      async function vaciarHoja() {
+        if (!urlHoja) return alert("Primero conecta la URL de Google Sheets.");
+        if (!confirm("Se BORRARÁN todos los datos de la hoja. ¿Continuar?"))
+          return;
+        marcarSync("sincronizando", "Vaciando...");
+        try {
+          await llamarHoja({
+            op: "sembrar",
+            data: {
+              alumnos: [],
+              profesores: [],
+              evaluaciones: [],
+              notas: [],
+              usuarios: [],
+            },
+          });
+          marcarSync("conectado");
+          alert("Hoja vaciada. Tu navegador conserva sus datos locales.");
+        } catch (e) {
+          marcarSync("error");
+          alert("No se pudo vaciar: " + e.message);
+        }
+      }
+
+      /* =========================================================
+         VISTAS: PROFESOR
+      ========================================================= */
+      function vistaProfesor(t) {
+        if (t === "notas") return vistaNotasProfesor();
+        if (t === "estudiantes") return vistaEstudiantesProfesor();
+        if (t === "evaluaciones") return vistaActividadesProfesor();
+        return "";
+      }
+
+      function vistaEstudiantesProfesor() {
+        const p = currentUser;
+        const mis = alumnosPorProfesor(p.id);
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Mis Estudiantes</h3><p class="text-xs text-slate-500 mt-1">' +
+          esc(p.grado || "Sin grado") +
+          " • " +
+          mis.length +
+          " estudiante(s)</p></div>" +
+          '<button data-accion="alumnoNuevo" class="btn-pri text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus"></i> Registrar Estudiante</button></div>' +
+          '<div class="card overflow-hidden"><div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr>' +
+          '<th class="th">Cédula Escolar</th><th class="th">Estudiante</th><th class="th">Representante</th><th class="th">Cédula Rep.</th>' +
+          '<th class="th">WhatsApp</th><th class="th">Pago</th><th class="th text-right">Acciones</th>' +
+          '</tr></thead><tbody class="divide-y divide-slate-100 text-sm">';
+
+        if (!mis.length) {
+          html += filaVacia(
+            "Aún no tienes estudiantes registrados en " +
+              (p.grado || "tu grado") +
+              ".",
+            7,
+          );
+        } else {
+          mis.forEach((s) => {
+            html +=
+              "<tr>" +
+              '<td class="td font-medium">' +
+              esc(s.cedulaEscolar) +
+              "</td>" +
+              '<td class="td font-semibold">' +
+              esc(s.nombre) +
+              "</td>" +
+              '<td class="td">' +
+              esc(s.representante) +
+              "</td>" +
+              '<td class="td"><span class="badge bg-slate-100 text-slate-600">' +
+              esc(s.repCedula || "-") +
+              "</span></td>" +
+              '<td class="td text-slate-500">+' +
+              esc(s.telefono) +
+              "</td>" +
+              '<td class="td">' +
+              badgePago(s.pago) +
+              "</td>" +
+              '<td class="td"><div class="flex items-center justify-end gap-1.5">' +
+              '<button data-accion="alumnoEditar" data-arg="' +
+              attr(s.cedulaEscolar) +
+              '" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200" title="Editar"><i class="fa-solid fa-pen"></i></button>' +
+              '<button data-accion="alumnoBorrar" data-arg="' +
+              attr(s.cedulaEscolar) +
+              '" class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>' +
+              "</div></td></tr>";
+          });
+        }
+
+        html +=
+          "</tbody></table></div></div>" +
+          '<p class="text-xs text-slate-400 flex items-start gap-1.5"><i class="fa-solid fa-circle-info mt-0.5"></i><span>Registra la cédula del representante para que pueda ver las notas de su hijo con esa cédula.</span></p>' +
+          "</section>";
+        return html;
+      }
+
+      function vistaActividadesProfesor() {
+        const p = currentUser;
+        const evs = db.evaluaciones
+          .filter((e) => e.profesorId === p.id)
+          .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)));
+        const lista =
+          filtroLapso === "todos"
+            ? evs
+            : evs.filter((e) => e.lapso === filtroLapso);
+        const totalAlumnos = alumnosPorProfesor(p.id).length;
+
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Actividades</h3><p class="text-xs text-slate-500 mt-1">' +
+          esc(p.grado || "") +
+          " • " +
+          evs.length +
+          " actividad(es) creada(s)</p></div>" +
+          '<div class="flex items-center gap-2 flex-wrap">' +
+          '<select data-cambio="filtrarLapsoProf" class="input w-auto">' +
+          '<option value="todos"' +
+          (filtroLapso === "todos" ? " selected" : "") +
+          ">Todos los lapsos</option>" +
+          '<option value="I"' +
+          (filtroLapso === "I" ? " selected" : "") +
+          ">Lapso I</option>" +
+          '<option value="II"' +
+          (filtroLapso === "II" ? " selected" : "") +
+          ">Lapso II</option>" +
+          '<option value="III"' +
+          (filtroLapso === "III" ? " selected" : "") +
+          ">Lapso III</option></select>" +
+          '<button data-accion="evalNueva" class="btn-pri text-sm flex items-center gap-2"><i class="fa-solid fa-plus"></i> Nueva Actividad</button></div></div>' +
+          '<div class="space-y-3">';
+
+        if (!lista.length) {
+          html +=
+            '<div class="card p-8 text-center text-slate-400 text-sm">No has creado actividades' +
+            (filtroLapso !== "todos" ? " en el Lapso " + filtroLapso : "") +
+            ".</div>";
+        } else {
+          lista.forEach((e) => {
+            const n = db.notas.filter(
+              (x) =>
+                x.evaluacionId === e.id && x.nota !== "" && x.nota !== null,
+            ).length;
+            html +=
+              '<div class="card p-5 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4"><div class="flex-1">' +
+              '<h4 class="font-bold text-slate-800">' +
+              esc(e.titulo) +
+              '</h4><div class="flex flex-wrap items-center gap-2 mt-2 text-xs">' +
+              '<span class="badge bg-slate-100 text-slate-600">' +
+              esc(e.materia) +
+              "</span>" +
+              '<span class="badge bg-blue-50 text-blue-700">Lapso ' +
+              esc(e.lapso) +
+              "</span>" +
+              '<span class="badge bg-slate-100 text-slate-600">' +
+              esc(e.tipo) +
+              "</span>" +
+              '<span class="badge bg-slate-100 text-slate-600">' +
+              fechar(e.fecha) +
+              "</span>" +
+              '<span class="badge bg-emerald-50 text-emerald-700">Pond. ' +
+              esc(e.ponderacion) +
+              "%</span>" +
+              '<span class="badge bg-slate-100 text-slate-600">Máx. ' +
+              esc(e.notaMax) +
+              "</span>" +
+              '<span class="badge ' +
+              (n === totalAlumnos
+                ? "bg-emerald-50 text-emerald-700"
+                : "bg-amber-50 text-amber-700") +
+              '">' +
+              n +
+              "/" +
+              totalAlumnos +
+              " con nota</span></div></div>" +
+              '<div class="flex items-center gap-2 flex-wrap">' +
+              '<button data-accion="cargarNotas" data-arg="' +
+              attr(e.id) +
+              '" class="btn-sec text-xs flex items-center gap-1.5 bg-emerald-600 text-white hover:bg-emerald-700"><i class="fa-solid fa-table-list"></i> Cargar Notas</button>' +
+              '<button data-accion="evalEditar" data-arg="' +
+              attr(e.id) +
+              '" class="btn-sec text-xs flex items-center gap-1.5"><i class="fa-solid fa-pen"></i> Editar</button>' +
+              '<button data-accion="evalBorrar" data-arg="' +
+              attr(e.id) +
+              '" class="btn-sec text-xs flex items-center gap-1.5 bg-rose-50 text-rose-600 hover:bg-rose-100"><i class="fa-solid fa-trash-can"></i> Eliminar</button>' +
+              "</div></div>";
+          });
+        }
+
+        html += "</div></section>";
+        return html;
+      }
+
+      function vistaNotasProfesor() {
+        const p = currentUser;
+        const mis = alumnosPorProfesor(p.id);
+        const evs = db.evaluaciones
+          .filter((e) => e.profesorId === p.id)
+          .sort(
+            (a, b) =>
+              String(a.lapso).localeCompare(String(b.lapso)) ||
+              String(a.titulo).localeCompare(String(b.titulo)),
+          );
+
+        if (alumnoEnDetalle) return fichaAlumno(alumnoEnDetalle);
+
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5"><div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Notas y Actividades</h3>' +
+          '<p class="text-xs text-slate-500 mt-1">' +
+          esc(p.grado || "") +
+          " • selecciona una actividad para cargar las notas</p></div>" +
+          '<div class="flex items-center gap-3 flex-wrap w-full lg:w-auto">' +
+          '<select data-cambio="seleccionarEval" class="input lg:w-80"><option value="">— Seleccionar actividad —</option>' +
+          evs
+            .map(
+              (e) =>
+                '<option value="' +
+                esc(e.id) +
+                '"' +
+                (evalSeleccionada === e.id ? " selected" : "") +
+                ">[Lapso " +
+                esc(e.lapso) +
+                "] " +
+                esc(e.titulo) +
+                " — " +
+                esc(e.materia) +
+                " (" +
+                esc(e.notaMax) +
+                " pts)</option>",
+            )
+            .join("") +
+          "</select>" +
+          '<button data-accion="guardarNotas" class="btn-pri text-sm flex items-center gap-2' +
+          (evalSeleccionada ? "" : " opacity-50 pointer-events-none") +
+          '"><i class="fa-solid fa-floppy-disk"></i> Guardar Notas</button></div></div></div>';
+
+        if (evalSeleccionada) {
+          const ev = getEvaluacion(evalSeleccionada);
+          if (ev) {
+            html +=
+              '<div class="card overflow-hidden"><div class="px-5 py-4 border-b border-slate-100 flex flex-wrap items-center gap-2">' +
+              '<span class="font-bold text-slate-800">' +
+              esc(ev.titulo) +
+              '</span><span class="badge bg-slate-100 text-slate-600">' +
+              esc(ev.materia) +
+              '</span><span class="badge bg-blue-50 text-blue-700">Lapso ' +
+              esc(ev.lapso) +
+              '</span><span class="badge bg-slate-100 text-slate-600">' +
+              esc(ev.tipo) +
+              '</span><span class="badge bg-emerald-50 text-emerald-700">Pond. ' +
+              esc(ev.ponderacion) +
+              '%</span><span class="badge bg-slate-100 text-slate-600">Máx. ' +
+              esc(ev.notaMax) +
+              '</span></div><div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr>' +
+              '<th class="th w-12">#</th><th class="th">Estudiante</th><th class="th text-center w-44">Nota (max. ' +
+              esc(ev.notaMax) +
+              ')</th><th class="th text-center w-32">% Obtenido</th></tr></thead><tbody class="divide-y divide-slate-100 text-sm">';
+            if (!mis.length) {
+              html += filaVacia("No tienes estudiantes asignados.", 4);
+            } else {
+              mis.forEach((s, i) => {
+                const n = getNota(ev.id, s.cedulaEscolar);
+                const pct = n === null ? null : porcentaje(ev, n);
+                const color =
+                  n === null
+                    ? "text-slate-300"
+                    : pct >= NOTA_APROBACION
+                      ? "text-emerald-600 font-semibold"
+                      : "text-rose-600 font-semibold";
+                html +=
+                  "<tr>" +
+                  '<td class="td text-slate-400">#' +
+                  (i + 1) +
+                  "</td>" +
+                  '<td class="td font-medium">' +
+                  esc(s.nombre) +
+                  '</td><td class="td text-center"><input type="number" min="0" max="' +
+                  esc(ev.notaMax) +
+                  '" step="0.1" data-est="' +
+                  esc(s.cedulaEscolar) +
+                  '" class="nota-input w-28 text-center bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" value="' +
+                  (n === null ? "" : n) +
+                  '" /></td>' +
+                  '<td class="td text-center ' +
+                  color +
+                  '">' +
+                  (pct === null ? "-" : pct.toFixed(1) + "%") +
+                  "</td></tr>";
+              });
+            }
+            html += "</tbody></table></div></div>";
+          }
+        }
+
+        html += "</section>";
+        return html;
+      }
+
+      /* =========================================================
+         VISTAS: REPRESENTANTE
+      ========================================================= */
+      function vistaRepresentante(t) {
+        if (t !== "notas") return "";
+        if (alumnoEnDetalle) return fichaAlumno(alumnoEnDetalle);
+
+        const hijos = currentUser.hijos.map(getAlumno).filter(Boolean);
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5 bg-gradient-to-r from-emerald-50 to-teal-50 border-emerald-100"><div class="flex items-center gap-4">' +
+          '<div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-graduation-cap"></i></div>' +
+          '<div><h3 class="text-lg font-bold text-slate-800">Notas y Actividades</h3><p class="text-xs text-slate-600 mt-0.5">' +
+          esc(currentUser.nombre) +
+          " • " +
+          hijos.length +
+          " hijo(s) representado(s)</p></div></div></div>";
+
+        if (!hijos.length) {
+          html +=
+            '<div class="card p-8 text-center text-slate-400">No hay alumnos vinculados a tu cédula.</div>';
+        } else {
+          hijos.forEach((a) => {
+            const r = resumenAlumno(a.cedulaEscolar);
+            const prom = r.promedio;
+            const col =
+              prom === null
+                ? "text-slate-400"
+                : prom >= NOTA_APROBACION
+                  ? "text-emerald-600"
+                  : "text-rose-600";
+            html +=
+              '<div class="card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">' +
+              '<div class="flex items-center gap-4">' +
+              '<span class="w-11 h-11 rounded-2xl bg-brand-50 text-brand-700 flex items-center justify-center font-bold">' +
+              iniciales(a.nombre) +
+              "</span>" +
+              '<div><h4 class="font-bold text-slate-800">' +
+              esc(a.nombre) +
+              '</h4><p class="text-xs text-slate-500 mt-0.5">' +
+              esc(a.grado) +
+              " • Cédula " +
+              esc(a.cedulaEscolar) +
+              '</p><div class="flex items-center gap-2 mt-2 flex-wrap">' +
+              badgePago(a.pago) +
+              '<span class="badge bg-slate-100 text-slate-600">' +
+              r.calificadas +
+              "/" +
+              r.actividades +
+              " actividades calificadas</span></div></div></div>" +
+              '<div class="flex items-center gap-4"><div class="text-right"><p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Promedio</p><p class="text-2xl font-bold font-heading ' +
+              col +
+              '">' +
+              (prom === null ? "--" : prom.toFixed(1) + "%") +
+              '</p></div><button data-accion="verAlumno" data-arg="' +
+              attr(a.cedulaEscolar) +
+              '" class="btn-pri text-sm">Ver notas <i class="fa-solid fa-arrow-right ml-1.5"></i></button></div></div>';
+          });
+        }
+
+        html +=
+          '<p class="text-xs text-slate-400 flex items-start gap-1.5"><i class="fa-solid fa-circle-info mt-0.5"></i><span>Si necesitas corregir algún dato de tu representado, comunícate con la administración de la escuela.</span></p>' +
+          "</section>";
+        return html;
+      }
+
+      /* =========================================================
+         FICHA DE ALUMNO (notas y actividades)
+      ========================================================= */
+      function fichaAlumno(alumnoId) {
+        const a = getAlumno(alumnoId);
+        if (!a)
+          return '<div class="card p-8 text-center text-slate-400">Alumno no encontrado.</div>';
+
+        const acts = actividadesDeAlumno(alumnoId);
+        const r = resumenAlumno(alumnoId);
+        const prom = r.promedio;
+        const col =
+          prom === null
+            ? "text-slate-400"
+            : prom >= NOTA_APROBACION
+              ? "text-emerald-600"
+              : "text-rose-600";
+
+        let html =
+          '<section class="space-y-5">' +
+          '<div class="card p-5"><div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">' +
+          '<div class="flex items-center gap-4">' +
+          '<button data-accion="volver" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center" title="Volver"><i class="fa-solid fa-arrow-left"></i></button>' +
+          '<div><h3 class="text-lg font-bold text-slate-800">' +
+          esc(a.nombre) +
+          '</h3><p class="text-xs text-slate-500 mt-0.5">' +
+          esc(a.grado) +
+          " • Cédula " +
+          esc(a.cedulaEscolar) +
+          "</p></div></div>" +
+          '<div class="flex items-center gap-5"><div class="text-right"><p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Promedio general</p><p class="text-2xl font-bold font-heading ' +
+          col +
+          '">' +
+          (prom === null ? "--" : prom.toFixed(1) + "%") +
+          '</p></div><div class="hidden sm:block h-10 w-px bg-slate-200"></div><div class="text-right"><p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Desempeño</p><p class="mt-1">' +
+          (prom === null
+            ? '<span class="badge bg-slate-100 text-slate-600">Sin notas</span>'
+            : prom >= NOTA_APROBACION
+              ? '<span class="badge bg-emerald-50 text-emerald-700">Aprobado</span>'
+              : '<span class="badge bg-rose-50 text-rose-700">En riesgo</span>') +
+          "</p></div></div></div></div>" +
+          '<div class="card overflow-hidden"><div class="px-5 py-4 border-b border-slate-100">' +
+          '<h4 class="font-bold text-slate-800">Actividades y notas</h4>' +
+          '<p class="text-xs text-slate-500 mt-0.5">' +
+          r.calificadas +
+          " de " +
+          r.actividades +
+          " actividades tienen nota registrada</p></div>" +
+          '<div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr>' +
+          '<th class="th">Lapso</th><th class="th">Actividad</th><th class="th">Materia</th><th class="th">Tipo</th>' +
+          '<th class="th">Fecha</th><th class="th text-center">Nota</th><th class="th text-center">% Obtenido</th><th class="th">Estado</th>' +
+          '</tr></thead><tbody class="divide-y divide-slate-100 text-sm">';
+
+        if (!acts.length) {
+          html += filaVacia("Todavía no hay actividades para este grado.", 8);
+        } else {
+          acts.forEach((e) => {
+            const n = getNota(e.id, alumnoId);
+            const pct = n === null ? null : porcentaje(e, n);
+            const estado =
+              n === null
+                ? '<span class="badge bg-slate-100 text-slate-500">Pendiente</span>'
+                : pct >= NOTA_APROBACION
+                  ? '<span class="badge bg-emerald-50 text-emerald-700">Aprobado</span>'
+                  : '<span class="badge bg-rose-50 text-rose-700">Bajo el mínimo</span>';
+            html +=
+              "<tr>" +
+              '<td class="td"><span class="badge bg-blue-50 text-blue-700">Lapso ' +
+              esc(e.lapso) +
+              "</span></td>" +
+              '<td class="td font-semibold text-slate-700">' +
+              esc(e.titulo) +
+              "</td>" +
+              '<td class="td">' +
+              esc(e.materia) +
+              "</td>" +
+              '<td class="td text-slate-500">' +
+              esc(e.tipo) +
+              "</td>" +
+              '<td class="td text-slate-500">' +
+              fechar(e.fecha) +
+              "</td>" +
+              '<td class="td text-center font-semibold">' +
+              (n === null ? "-" : n + " / " + esc(e.notaMax)) +
+              "</td>" +
+              '<td class="td text-center ' +
+              (n === null
+                ? "text-slate-300"
+                : pct >= NOTA_APROBACION
+                  ? "text-emerald-600 font-semibold"
+                  : "text-rose-600 font-semibold") +
+              '">' +
+              (pct === null ? "-" : pct.toFixed(1) + "%") +
+              "</td>" +
+              '<td class="td">' +
+              estado +
+              "</td></tr>";
+          });
+        }
+
+        html += "</tbody></table></div></div></section>";
+        return html;
+      }
+
+      /* =========================================================
+         ARRANQUE
+      ========================================================= */
+      window.onload = function () {
+        let guardada = "";
+        try {
+          guardada = localStorage.getItem(LS_URL) || "";
+        } catch (e) {
+          guardada = "";
+        }
+        urlHoja = guardada || URL_HOJA_POR_DEFECTO;
+        if (!cargarLocal()) db = JSON.parse(JSON.stringify(SEMILLA));
+        normalizar();
+        cambiarRolLogin();
+        marcarSync(
+          urlHoja ? "sincronizando" : "local",
+          urlHoja ? "Conectando..." : null,
+        );
+        if (urlHoja) {
+          sincronizar().then(() => {
+            if (estadoSync === "error")
+              marcarSync("local", "Sin conexión con la hoja");
+          });
+        }
+      };
+    </script>
+  </body>
+</html>
