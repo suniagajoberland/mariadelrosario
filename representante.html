@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión Escolar - Primaria | María del Rosario</title>
+    <title>Acceso Representantes | María del Rosario</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config.js"></script>
     <link
@@ -25,43 +25,44 @@
     <div id="pantalla-login" class="login-fondo">
       <div class="login-card text-center">
         <div
-          class="mx-auto w-14 h-14 rounded-2xl bg-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 mb-4"
+          class="mx-auto w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 mb-4"
         >
-          <i class="fa-solid fa-user-shield text-2xl"></i>
+          <i class="fa-solid fa-user-group text-2xl"></i>
         </div>
         <h1 class="text-xl font-bold font-heading text-slate-800">
           U.E. Primaria "María del Rosario"
         </h1>
         <p class="text-sm text-slate-500 mt-1">Sistema de Gestión Escolar</p>
-        <span class="login-rol-badge">Acceso Administrativo</span>
+        <span class="login-rol-badge">Acceso Representantes</span>
 
         <form
           id="form-login"
           class="mt-6 space-y-4 text-left"
           onsubmit="event.preventDefault(); iniciarSesion();"
         >
-          <input type="hidden" id="login-rol" value="admin" />
+          <input type="hidden" id="login-rol" value="representante" />
 
           <div class="login-campo">
-            <label for="admin-user">Usuario</label>
+            <label for="rep-login-ci">Cédula del Representante</label>
             <input
               type="text"
-              id="admin-user"
-              placeholder="Usuario"
-              autocomplete="username"
+              id="rep-login-ci"
+              placeholder="Cédula"
+              autocomplete="off"
+              inputmode="numeric"
               autofocus
             />
           </div>
 
-          <div class="login-campo">
-            <label for="admin-pass">Contraseña</label>
-            <input
-              type="password"
-              id="admin-pass"
-              placeholder="Contraseña"
-              autocomplete="current-password"
-            />
-          </div>
+          <p
+            class="text-[11px] text-slate-600 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 flex gap-2 items-start"
+          >
+            <i class="fa-solid fa-circle-info text-amber-500 mt-0.5"></i>
+            <span
+              >Tu cédula es la clave de acceso. Verás las notas y actividades
+              de todos tus hijos representados.</span
+            >
+          </p>
 
           <div
             id="login-error"
@@ -81,8 +82,8 @@
         </p>
 
         <div class="login-links">
+          <a href="index.html">Portal / Administrador</a>
           <a href="profesor.html">Soy profesor(a)</a>
-          <a href="representante.html">Soy representante</a>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión Escolar - Primaria | María del Rosario</title>
+    <title>Acceso Profesores | María del Rosario</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config.js"></script>
     <link
@@ -25,40 +25,41 @@
     <div id="pantalla-login" class="login-fondo">
       <div class="login-card text-center">
         <div
-          class="mx-auto w-14 h-14 rounded-2xl bg-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 mb-4"
+          class="mx-auto w-14 h-14 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 mb-4"
         >
-          <i class="fa-solid fa-user-shield text-2xl"></i>
+          <i class="fa-solid fa-chalkboard-user text-2xl"></i>
         </div>
         <h1 class="text-xl font-bold font-heading text-slate-800">
           U.E. Primaria "María del Rosario"
         </h1>
         <p class="text-sm text-slate-500 mt-1">Sistema de Gestión Escolar</p>
-        <span class="login-rol-badge">Acceso Administrativo</span>
+        <span class="login-rol-badge">Acceso Profesores</span>
 
         <form
           id="form-login"
           class="mt-6 space-y-4 text-left"
           onsubmit="event.preventDefault(); iniciarSesion();"
         >
-          <input type="hidden" id="login-rol" value="admin" />
+          <input type="hidden" id="login-rol" value="profesor" />
 
           <div class="login-campo">
-            <label for="admin-user">Usuario</label>
+            <label for="prof-login-ci">Cédula de Identidad</label>
             <input
               type="text"
-              id="admin-user"
-              placeholder="Usuario"
-              autocomplete="username"
+              id="prof-login-ci"
+              placeholder="Cédula"
+              autocomplete="off"
+              inputmode="numeric"
               autofocus
             />
           </div>
 
           <div class="login-campo">
-            <label for="admin-pass">Contraseña</label>
+            <label for="prof-login-clave">Contraseña</label>
             <input
               type="password"
-              id="admin-pass"
-              placeholder="Contraseña"
+              id="prof-login-clave"
+              placeholder="Clave asignada por la administración"
               autocomplete="current-password"
             />
           </div>
@@ -81,7 +82,7 @@
         </p>
 
         <div class="login-links">
-          <a href="profesor.html">Soy profesor(a)</a>
+          <a href="index.html">Portal / Administrador</a>
           <a href="representante.html">Soy representante</a>
         </div>
       </div>
